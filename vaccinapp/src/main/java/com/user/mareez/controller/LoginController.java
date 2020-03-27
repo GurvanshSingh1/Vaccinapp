@@ -47,7 +47,18 @@ public class LoginController {
 	    }
 	    return "login";
 	}
-
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+	    User user = (User) session.getAttribute("user");
+	    if(user != null) {
+	    	session.removeAttribute("user");
+	    }
+	    return "index";
+	}
+	
+    
+	
 	@PostMapping("/login") 
 	public String login(@ModelAttribute("loginInfo") LoginInfo loginInfo, Model model){
 		User user = userDao.findByEmail(loginInfo.getEmail());
