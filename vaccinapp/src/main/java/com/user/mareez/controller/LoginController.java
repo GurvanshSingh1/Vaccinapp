@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.user.mareez.dao.StudentDao;
 import com.user.mareez.dao.UserDao;
 import com.user.mareez.model.LoginInfo;
-import com.user.mareez.model.Student;
 import com.user.mareez.model.User;
+import com.user.mareez.model.UserVaccinationInfo;
 
 @Controller
-@SessionAttributes("student")
+@SessionAttributes("user")
 public class LoginController {
 	
 	@Autowired
@@ -32,6 +31,11 @@ public class LoginController {
 	@ModelAttribute("loginInfo")
 	public LoginInfo loginForm() {
 		return new LoginInfo();
+	}
+	
+	@ModelAttribute("UserVaccinationInfo")
+	public UserVaccinationInfo userVaccinationInfo() {
+		return new UserVaccinationInfo();
 	}
 
 	/**
@@ -66,6 +70,7 @@ public class LoginController {
 
 		if(user != null && user.getPassword().equals(loginInfo.getPassword())) {
 			model.addAttribute("user", user);
+			model.addAttribute("userName", user.getFirstName());
 			model.addAttribute("message", "Welcome, " + user.getFirstName() +"!");
 			return "login-success";
 		}

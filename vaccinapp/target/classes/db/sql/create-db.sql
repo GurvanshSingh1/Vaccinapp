@@ -2,6 +2,7 @@ DROP TABLE users IF EXISTS;
 DROP TABLE registrations IF EXISTS;
 DROP TABLE students IF EXISTS;
 DROP TABLE courses IF EXISTS;
+DROP TABLE userVaccination IF EXISTS;
 
 
 CREATE TABLE users (
@@ -14,6 +15,14 @@ CREATE TABLE users (
   address VARCHAR(100),
   postal VARCHAR(30),
   dob VARCHAR(20)
+);
+
+CREATE TABLE userVaccination (
+  vaccinId    INTEGER ,
+  fname VARCHAR(30),
+  vaccinType VARCHAR(30),
+  notes VARCHAR(100),
+  vaccinDate  VARCHAR(50)
 );
 
 CREATE TABLE students (
