@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.user.mareez.model.User;
+import com.user.mareez.model.UserVaccinationInfo;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -81,6 +82,30 @@ public class UserDaoImpl implements UserDao {
 
 		String sql = "INSERT INTO userVaccination VALUES (1, :fName, :vaccinationType, :notes, :vaccinationDate)";
 		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public List<UserVaccinationInfo> findVaccinationByUser(String fName) {
+		Map<String, Object> params = new HashMap<String, Object>();
+        params.put("fName", fName);
+        
+		String sql = "SELECT * FROM userVaccination WHERE fname=:fName";
+		
+		List<UserVaccinationInfo> result = namedParameterJdbcTemplate.query(sql, params, new VaccinationMapper());
+                    
+        //new BeanPropertyRowMapper(Customer.class));
+        
+        return result;
+	}
+	
+	private static final class VaccinationMapper implements RowMapper<UserVaccinationInfo> {
+
+		public UserVaccinationInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+			UserVaccinationInfo userVaccinationInfo = new UserVaccinationInfo();
+			userVaccinationInfo.setVaccinDate(rs.getString("vaccinDate"));
+			userVaccinationInfo.setVaccinType(rs.getString("vaccinType"));
+			userVaccinationInfo.setNotes(rs.getString("notes"));
+			return userVaccinationInfo;
+		}
 	}
 
 }

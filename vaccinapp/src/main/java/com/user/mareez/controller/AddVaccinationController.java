@@ -1,5 +1,9 @@
 package com.user.mareez.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.user.mareez.dao.UserDao;
+import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
 
-@Controller
 @SessionAttributes("user")
+@Controller
 public class AddVaccinationController {
 	
 	@Autowired
@@ -29,7 +34,7 @@ public class AddVaccinationController {
 	}
 
 	@PostMapping("/addNewUserVaccination")
-	public String saveUser(@ModelAttribute("UserVaccinationInfo") UserVaccinationInfo userVaccinationInfo, Model model) {
+	public String saveUser(HttpSession session,@ModelAttribute("UserVaccinationInfo") UserVaccinationInfo userVaccinationInfo, Model model) {
 
 		// Implement business logic to save user details into a database
 		// .....
@@ -44,7 +49,21 @@ public class AddVaccinationController {
 
 			
 		}
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		model.addAttribute("userName", user.getFirstName());
+		model.addAttribute("message", "Welcome, " + user.getFirstName() +"!");
 		return "login-success";
 
+	}
+	
+	@GetMapping("/viewAllRecords")
+	public String viewAllRecords(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+	    if(user != null) {
+		List<UserVaccinationInfo> userVaccinationInfo = userDao.findVaccinationByUser(user.getFirstName());
+    	model.addAttribute("userVaccinationInfo", userVaccinationInfo);
+	    }
+		return "view-all-records";
 	}
 }
