@@ -1,5 +1,6 @@
 INSERT INTO users VALUES (1, 'test1', 'test1', 'male', 'abc@abc.com','password', '1234city', 'v4a2x9', '01/01/95');
 INSERT INTO userVaccination VALUES (1, 'test1', 'Coronavirus', 'This vaccination is for COVID-19', '01/01/2020');
+INSERT INTO userVaccination VALUES (1, 'test2', 'ABC', 'This vaccination is for AAA-19', '01/01/2020');
 
 INSERT INTO students VALUES('lis@douglascollege.ca', 'Simon Li', '123456');
 INSERT INTO students VALUES('wongi5@douglascollege.ca', 'Ivan Wong', '654321');

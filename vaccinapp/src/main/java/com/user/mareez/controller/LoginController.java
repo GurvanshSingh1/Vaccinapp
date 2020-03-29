@@ -44,9 +44,12 @@ public class LoginController {
 	 * @return
 	 */
 	@GetMapping("/login")
-	public String login(HttpSession session) {
+	public String login(HttpSession session, Model model) {
 	    User user = (User) session.getAttribute("user");
 	    if(user != null) {
+			model.addAttribute("user", user);
+			model.addAttribute("userName", user.getFirstName());
+			model.addAttribute("message", "Welcome, " + user.getFirstName() +"!");
 	    	return "login-success";
 	    }
 	    return "login";
@@ -56,9 +59,9 @@ public class LoginController {
 	public String logout(HttpSession session) {
 	    User user = (User) session.getAttribute("user");
 	    if(user != null) {
-	    	session.removeAttribute("user");
+	    	session.invalidate();
 	    }
-	    return "index";
+	    return "login";
 	}
 	
     

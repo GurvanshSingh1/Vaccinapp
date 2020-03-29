@@ -21,6 +21,15 @@ body {
 label, h1, p {
 	color: white;
 }
+
+a {
+	display: block;
+}
+
+#login, #logout{
+
+display: inline;
+}
 </style>
 <%@ page isELIgnored="false"%>
 </head>
@@ -34,34 +43,33 @@ label, h1, p {
 				<h1>${message}</h1>
 			</div>
 			<div class="col-md-6" style="text-align: right">
-				<br> <a href="logout"><input type="button"
+			
+				<br> 
+				<a id="login" href="login"><input type="button"
+					class="btn btn-primary btn-lg" value="Home" /></a>
+				<a id="logout" href="logout"><input type="button"
 					class="btn btn-primary btn-lg" value="Logout" /></a>
 			</div>
 		</div>
 	</div>
 	<br>
 
-	<div class="page-header">
-		<div class="row">
-			<div class="col-md-6">
-				<br> <a><input type="button" class="btn btn-primary btn-lg"
-					value="Add a new Record" /></a>
-			</div>
-
+	<div class="row">
+		<div class="col-md-6">
+			<br> <a><input type="button" class="btn btn-primary btn-lg"
+				value="Add a new Record" /></a><br> <a href="viewAllRecords"><input type="button"
+				class="btn btn-primary btn-lg" value="View All Records" /></a>
 		</div>
-	</div>
-
-	<!-- Add New Record Div -->
-	<div class="d-flex align-items-center justify-content-center h-100">
-		<div class="d-flex flex-column">
+		<div class="col-md-4">
 			<h1 class="text align-self-center p-2">Add New Record...</h1>
-			<form:form action="addNewUserVaccination" cssClass="form-horizontal" method="post"
-				modelAttribute="UserVaccinationInfo">
+			<form:form action="addNewUserVaccination" cssClass="form-horizontal"
+				method="post" modelAttribute="UserVaccinationInfo">
 
-				<div class="form-group">
+				<div class="form-group" style="display: none;">
 					<label for="fname" class="col-md-3 control-label">fname</label>
 					<div class="col-md-12">
-						<form:input path="fname" value="${userName}" cssClass="form-control" />
+						<form:input path="fname" value="${userName}"
+							cssClass="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -84,18 +92,21 @@ label, h1, p {
 				</div>
 
 				<div class="form-group">
-				
+
 					<div class="col-md-offset-3 col-md-9">
 						<form:button cssClass="btn btn-primary">Add Record</form:button>
 						<br>
-						<p>${approved}</p>>
+						<p>${approved}</p>
+
 					</div>
 				</div>
 
 			</form:form>
 
 		</div>
-	</div> 
+	</div>
+
+
 
 </body>
 </html>
