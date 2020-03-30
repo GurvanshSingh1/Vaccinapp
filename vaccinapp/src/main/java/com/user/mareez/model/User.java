@@ -9,6 +9,8 @@ public class User {
 	private String dob;
 	private String address;
 	private String postal;
+	private String userType;
+	private int isApproved;
  
 	public String getFirstName() {
 		return firstName;
@@ -73,5 +75,21 @@ public class User {
 
 	public void setPostal(String postal) {
 		this.postal = postal;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public int getIsApproved() {
+		return isApproved;
+	}
+
+	public void setIsApproved(int isApproved) {
+		this.isApproved = isApproved;
 	}
 }

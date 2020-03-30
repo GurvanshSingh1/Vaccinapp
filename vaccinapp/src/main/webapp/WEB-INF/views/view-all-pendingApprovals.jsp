@@ -7,11 +7,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>All Vaccinations</title>
+<title>All Records</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script>
+	function approve(button) {
+		button.setAttribute('value', 'Approved');
+		button.disabled = true;
+	}
+</script>
 <style>
 body {
 	background-image: url("/resources/images/background.jpg");
@@ -39,7 +45,7 @@ a {
 		<div class="row">
 			<div class="col-md-6">
 				<br>
-				<h1>All Vaccinations</h1>
+				<h1>Pending Users</h1>
 			</div>
 			<div class="col-md-6" style="text-align: right">
 
@@ -58,30 +64,28 @@ a {
 			<div class="d-flex align-items-center justify-content-center h-100">
 				<div class="d-flex flex-column">
 					<table class="table table-striped table-bordered">
-						<tr><th>Vaccination Type</th>
-						<th>Vaccination Date</th>
-						<th>Notes</th>
-						<th>Remove?</th></tr>
-						<c:forEach var="userVaccinationInfo"
-							items="${userVaccinationInfo}">
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Gender</th>
+							<th>Approve?</th>
+						</tr>
+						<c:forEach var="userUnapproved" items="${userUnapproved}">
 							<tr>
-								<td>${userVaccinationInfo.vaccinType}</td>
-								<td>${userVaccinationInfo.vaccinDate}</td>
-								<td>${userVaccinationInfo.notes}</td>
-								<td><a href="deleteUserVaccination?vaccinType=${userVaccinationInfo.vaccinType}"><input type="button" value="Delete"/> </a>
+								<td>${userUnapproved.firstName}</td>
+								<td>${userUnapproved.lastName}</td>
+								<td>${userUnapproved.email}</td>
+								<td>${userUnapproved.gender}</td>
+								<td><a href="approveUser?userEmail=${userUnapproved.email}"><input
+										id="approveButton" onclick="approve(this);" type="button"
+										value="Approve" /> </a>
 							</tr>
 						</c:forEach>
-
-
 					</table>
-
-
 				</div>
 			</div>
 		</header>
 	</section>
-
-
-
 </body>
 </html>

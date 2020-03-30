@@ -18,7 +18,7 @@ body {
 	background-size: cover;
 }
 
-label, h1 {
+label, h1, p {
 	color: white;
 }
 </style>
@@ -50,15 +50,19 @@ label, h1 {
 							<!-- Button -->
 							<div class="col-md-offset-3 col-md-9">
 								<form:button cssClass="btn btn-primary">Submit</form:button>
-								<a href="showSignUpForm"><input type="button" value="New User?" /></a>
+								<a href="showSignUpForm"><input type="button"
+									value="New User?" /></a><br>
+
 							</div>
 						</div>
-
+						<p>${messageInvalid}</p>
 					</form:form>
 
 				</div>
 			</div>
+
 		</header>
+
 	</section>
 </body>
 </html>

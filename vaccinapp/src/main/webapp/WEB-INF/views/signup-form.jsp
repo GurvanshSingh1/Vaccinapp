@@ -90,6 +90,12 @@ div{
 							<div class="col-md-12">
 								<form:input path="postal" cssClass="form-control" />
 							</div>
+							<div class="col-md-12" style="display:none">
+								<form:input path="userType" value="USER" cssClass="form-control" />
+							</div>
+								<div class="col-md-12" style="display:none">
+								<form:input path="isApproved" value="0" cssClass="form-control" />
+							</div>
 						</div><br>
 
 						<div class="form-group">

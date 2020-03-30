@@ -18,11 +18,10 @@ import com.user.mareez.model.UserVaccinationInfo;
 @Controller
 @SessionAttributes("user")
 public class LoginController {
-	
+
 	@Autowired
 	UserDao userDao;
-	
-	
+
 	/**
 	 * Create new signUpForm object for empty from
 	 * 
@@ -32,7 +31,7 @@ public class LoginController {
 	public LoginInfo loginForm() {
 		return new LoginInfo();
 	}
-	
+
 	@ModelAttribute("UserVaccinationInfo")
 	public UserVaccinationInfo userVaccinationInfo() {
 		return new UserVaccinationInfo();
@@ -45,39 +44,41 @@ public class LoginController {
 	 */
 	@GetMapping("/login")
 	public String login(HttpSession session, Model model) {
-	    User user = (User) session.getAttribute("user");
-	    if(user != null) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
 			model.addAttribute("user", user);
 			model.addAttribute("userName", user.getFirstName());
-			model.addAttribute("message", "Welcome, " + user.getFirstName() +"!");
-	    	return "login-success";
-	    }
-	    return "login";
-	}
-	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-	    User user = (User) session.getAttribute("user");
-	    if(user != null) {
-	    	session.invalidate();
-	    }
-	    return "login";
-	}
-	
-    
-	
-	@PostMapping("/login") 
-	public String login(@ModelAttribute("loginInfo") LoginInfo loginInfo, Model model){
-		User user = userDao.findByEmail(loginInfo.getEmail());
-		model.addAttribute("message", "Login Fail");
-
-		if(user != null && user.getPassword().equals(loginInfo.getPassword())) {
-			model.addAttribute("user", user);
-			model.addAttribute("userName", user.getFirstName());
-			model.addAttribute("message", "Welcome, " + user.getFirstName() +"!");
+			model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
 			return "login-success";
 		}
 		return "login";
 	}
-	
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			session.invalidate();
+		}
+		return "login";
+	}
+
+	@PostMapping("/login")
+	public String login(@ModelAttribute("loginInfo") LoginInfo loginInfo, Model model) {
+		User user = userDao.findByEmail(loginInfo.getEmail());
+		model.addAttribute("messageInvalid", "User does not exist or it is not approved by the admin yet!");
+
+		if (user != null && user.getPassword().equals(loginInfo.getPassword()) && (user.getIsApproved() == 1)) {
+			model.addAttribute("user", user);
+			model.addAttribute("userName", user.getFirstName());
+			model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
+			if (user.getUserType().contentEquals("USER")) {
+				return "login-success";
+			} else {
+				return "login-success-admin";
+			}
+		}
+		return "login";
+	}
+
 }

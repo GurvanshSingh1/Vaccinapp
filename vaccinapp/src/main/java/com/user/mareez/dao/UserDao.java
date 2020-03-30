@@ -12,5 +12,9 @@ public interface UserDao {
 	
 	User findByEmail(String email);
 	List<UserVaccinationInfo> findVaccinationByUser(String fName);
+	int deleteUserVaccination(String firstName, String vaccinType);
+	
+	List<User> findUnapprovedUsers();
+	int approveUserByEmail(String userEmail);
 
 }

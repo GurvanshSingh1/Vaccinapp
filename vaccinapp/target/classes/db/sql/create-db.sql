@@ -9,12 +9,14 @@ CREATE TABLE users (
   id    INTEGER ,
   fname VARCHAR(30),
   lname VARCHAR(30),
+  userType VARCHAR (10),
   gender VARCHAR(20),
   email  VARCHAR(50),
   password VARCHAR(50),
   address VARCHAR(100),
   postal VARCHAR(30),
-  dob VARCHAR(20)
+  dob VARCHAR(20),
+  isApproved INTEGER
 );
 
 CREATE TABLE userVaccination (

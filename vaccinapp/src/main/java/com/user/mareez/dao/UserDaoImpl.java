@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
 		params.put("address", address);
 		params.put("postal", postal);
 
-		String sql = "INSERT INTO users VALUES (1, :fName, :lName, :gender, :email, :password, :address, :postal, :dob)";
+		String sql = "INSERT INTO users VALUES (1, :fName, :lName, 'USER', :gender, :email, :password, :address, :postal, :dob, 0)";
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
@@ -66,8 +66,12 @@ public class UserDaoImpl implements UserDao {
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
 			user.setFirstName(rs.getString("fname"));
+			user.setLastName(rs.getString("lname"));
+			user.setGender(rs.getString("gender"));
 			user.setEmail(rs.getString("email"));
 			user.setPassword(rs.getString("password"));
+			user.setIsApproved(rs.getInt("isApproved"));
+			user.setUserType(rs.getString("userType"));
 			return user;
 		}
 	}
@@ -106,6 +110,38 @@ public class UserDaoImpl implements UserDao {
 			userVaccinationInfo.setNotes(rs.getString("notes"));
 			return userVaccinationInfo;
 		}
+	}
+
+	public int deleteUserVaccination(String firstName, String vaccinType) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("fName", firstName);
+		params.put("vaccinType", vaccinType);
+	
+
+		String sql = "DELETE FROM userVaccination WHERE fname=:fName AND vaccinType=:vaccinType ";
+		return namedParameterJdbcTemplate.update(sql, params);
+		
+	}
+
+	public List<User> findUnapprovedUsers() {
+		Map<String, Object> params = new HashMap<String, Object>();
+        params.put("isApproved", 0);
+        
+		String sql = "SELECT * FROM users WHERE isApproved=:isApproved";
+		
+		List<User> result = namedParameterJdbcTemplate.query(sql, params, new UserMapper());
+                    
+        //new BeanPropertyRowMapper(Customer.class));
+        
+        return result;
+	}
+
+	public int approveUserByEmail(String userEmail) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", userEmail);
+	
+		String sql = "UPDATE users SET isApproved=1 WHERE email=:email ";
+		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
 }
