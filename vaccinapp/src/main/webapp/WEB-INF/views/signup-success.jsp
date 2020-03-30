@@ -16,7 +16,7 @@ body {
 	background-size: cover;
 }
 
-h3 {
+h5 {
 	color: white;
 }
 </style>
@@ -25,9 +25,9 @@ h3 {
 <body>
 	<div class="container">
 			<br><br>
-			<h3>${message}</h3>
+			<h5>${message}</h5>
 			<br>
-			<a href="login"><input type="button" value="Login" /></a>
+			<a href="logout"><input type="button" value="Login" /></a>
 
 	</div>
 </body>

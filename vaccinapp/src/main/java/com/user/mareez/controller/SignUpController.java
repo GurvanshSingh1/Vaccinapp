@@ -55,7 +55,7 @@ public class SignUpController {
 		if (result > 0) {
 	
 
-			model.addAttribute("message", "Thank you, " + user.getFirstName() +" for registering with us. Please login with your email and password");
+			model.addAttribute("message", "Thank you, " + user.getFirstName() +" for registering with us. Please wait while we approve your request!");
 //		model.addAttribute("user", user);
 
 			return "signup-success";

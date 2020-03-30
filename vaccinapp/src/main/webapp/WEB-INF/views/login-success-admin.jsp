@@ -65,9 +65,8 @@ display: inline;
 
 	<div class="row">
 		<div class="col-md-6">
-			<br> <a><input type="button" onclick="showhide();" class="btn btn-primary btn-lg"
-				value="Add New Vaccination" /></a><br> <a href="viewAllRecords"><input type="button"
-				class="btn btn-primary btn-lg" value="View All Vaccinations" /></a>
+			<br> <a href="viewPendingApprovals"><input type="button" class="btn btn-primary btn-lg"
+				value="Pending User Approvals" /></a>
 		</div>
 		<div id="newVaccination" class="col-md-4">
 			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>
