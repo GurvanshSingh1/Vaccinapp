@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.user.mareez.dao.UserDao;
+import com.user.mareez.model.AdminVaccinationInfo;
 import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
 
@@ -51,13 +52,18 @@ public class AddVaccinationController {
 //		model.addAttribute("user", user);
 
 		}
+
+
 		User user = (User) session.getAttribute("user");
+		List <AdminVaccinationInfo> adminVaccinationInfo = userDao.findAdminVaccination();
+		model.addAttribute("adminVaccinationInfo", adminVaccinationInfo);
 		model.addAttribute("user", user);
 		model.addAttribute("userName", user.getFirstName());
 		model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
 		return "login-success";
 
 	}
+	
 
 	@GetMapping("/viewAllRecords")
 	public String viewAllRecords(HttpSession session, Model model) {
@@ -70,10 +76,10 @@ public class AddVaccinationController {
 	}
 
 	@GetMapping("/deleteUserVaccination")
-	public String deleteUserVaccination(@RequestParam("vaccinType") String vaccinType, Model model, HttpSession session) {
+	public String deleteUserVaccination(@RequestParam("vaccinId") String vaccinId, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user != null) {
-		userDao.deleteUserVaccination(user.getFirstName(), vaccinType);
+		userDao.deleteUserVaccination(Integer.parseInt(vaccinId));
 		List<UserVaccinationInfo> userVaccinationInfo = userDao.findVaccinationByUser(user.getFirstName());
 		model.addAttribute("userVaccinationInfo", userVaccinationInfo);
 		}

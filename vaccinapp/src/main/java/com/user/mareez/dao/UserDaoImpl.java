@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.user.mareez.model.AdminVaccinationInfo;
 import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
 
@@ -53,14 +54,14 @@ public class UserDaoImpl implements UserDao {
 
 		List<User> results = namedParameterJdbcTemplate.query(sql, params, new UserMapper());
 
-		if(results.size() == 0) {
+		if (results.size() == 0) {
 			return null;
 		}
 		User user = results.get(0);
-						
+
 		return user;
 	}
-	
+
 	private static final class UserMapper implements RowMapper<User> {
 
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -83,28 +84,28 @@ public class UserDaoImpl implements UserDao {
 		params.put("vaccinationDate", vaccinationDate);
 		params.put("notes", notes);
 
-
-		String sql = "INSERT INTO userVaccination VALUES (1, :fName, :vaccinationType, :notes, :vaccinationDate)";
+		String sql = "INSERT INTO userVaccination(fname, vaccinType, notes, vaccinDate) VALUES (:fName, :vaccinationType, :notes, :vaccinationDate)";
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
 	public List<UserVaccinationInfo> findVaccinationByUser(String fName) {
 		Map<String, Object> params = new HashMap<String, Object>();
-        params.put("fName", fName);
-        
+		params.put("fName", fName);
+
 		String sql = "SELECT * FROM userVaccination WHERE fname=:fName";
-		
+
 		List<UserVaccinationInfo> result = namedParameterJdbcTemplate.query(sql, params, new VaccinationMapper());
-                    
-        //new BeanPropertyRowMapper(Customer.class));
-        
-        return result;
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
 	}
-	
+
 	private static final class VaccinationMapper implements RowMapper<UserVaccinationInfo> {
 
 		public UserVaccinationInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 			UserVaccinationInfo userVaccinationInfo = new UserVaccinationInfo();
+			userVaccinationInfo.setVaccinId((Integer.parseInt(rs.getString("vaccinId"))));
 			userVaccinationInfo.setVaccinDate(rs.getString("vaccinDate"));
 			userVaccinationInfo.setVaccinType(rs.getString("vaccinType"));
 			userVaccinationInfo.setNotes(rs.getString("notes"));
@@ -112,36 +113,59 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
-	public int deleteUserVaccination(String firstName, String vaccinType) {
+	public int deleteUserVaccination(int vaccinId) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("fName", firstName);
-		params.put("vaccinType", vaccinType);
-	
-
-		String sql = "DELETE FROM userVaccination WHERE fname=:fName AND vaccinType=:vaccinType ";
-		return namedParameterJdbcTemplate.update(sql, params);
 		
+		params.put("vaccinId", vaccinId);
+
+		String sql = "DELETE FROM userVaccination WHERE vaccinId=:vaccinId ";
+		return namedParameterJdbcTemplate.update(sql, params);
+
 	}
 
 	public List<User> findUnapprovedUsers() {
 		Map<String, Object> params = new HashMap<String, Object>();
-        params.put("isApproved", 0);
-        
+		params.put("isApproved", 0);
+
 		String sql = "SELECT * FROM users WHERE isApproved=:isApproved";
-		
+
 		List<User> result = namedParameterJdbcTemplate.query(sql, params, new UserMapper());
-                    
-        //new BeanPropertyRowMapper(Customer.class));
-        
-        return result;
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
 	}
 
 	public int approveUserByEmail(String userEmail) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("email", userEmail);
-	
+
 		String sql = "UPDATE users SET isApproved=1 WHERE email=:email ";
 		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public List<AdminVaccinationInfo> findAdminVaccination() {
+		// TODO Auto-generated method stub
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("1", "1=1");
+		String sql = "SELECT * FROM adminVaccination";
+
+		List<AdminVaccinationInfo> result = namedParameterJdbcTemplate.query(sql, params, new AdminVaccinMapper());
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
+	}
+	
+	private static final class AdminVaccinMapper implements RowMapper<AdminVaccinationInfo> {
+
+		public AdminVaccinationInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+			AdminVaccinationInfo adminVaccinationInfo = new AdminVaccinationInfo();
+			adminVaccinationInfo.setVaccinType(rs.getString("vaccinType"));
+			adminVaccinationInfo.setNotes(rs.getString("notes"));
+			adminVaccinationInfo.setVaccinEffective(Integer.parseInt(rs.getString("vaccinEffective")));
+			return adminVaccinationInfo;
+		}
 	}
 
 }

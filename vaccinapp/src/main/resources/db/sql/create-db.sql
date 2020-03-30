@@ -3,6 +3,7 @@ DROP TABLE registrations IF EXISTS;
 DROP TABLE students IF EXISTS;
 DROP TABLE courses IF EXISTS;
 DROP TABLE userVaccination IF EXISTS;
+DROP TABLE adminVaccination IF EXISTS;
 
 
 CREATE TABLE users (
@@ -20,11 +21,18 @@ CREATE TABLE users (
 );
 
 CREATE TABLE userVaccination (
-  vaccinId    INTEGER ,
+  vaccinId    INTEGER identity,
   fname VARCHAR(30),
   vaccinType VARCHAR(30),
   notes VARCHAR(100),
   vaccinDate  VARCHAR(50)
+);
+
+CREATE TABLE adminVaccination (
+  vaccinId    INTEGER ,
+  vaccinType VARCHAR(30),
+  notes VARCHAR(100),
+  vaccinEffective  INTEGER
 );
 
 CREATE TABLE students (

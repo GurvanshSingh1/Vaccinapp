@@ -2,6 +2,7 @@ package com.user.mareez.dao;
 
 import java.util.List;
 
+import com.user.mareez.model.AdminVaccinationInfo;
 import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
 
@@ -12,9 +13,11 @@ public interface UserDao {
 	
 	User findByEmail(String email);
 	List<UserVaccinationInfo> findVaccinationByUser(String fName);
-	int deleteUserVaccination(String firstName, String vaccinType);
+	int deleteUserVaccination(int vaccinType);
 	
 	List<User> findUnapprovedUsers();
 	int approveUserByEmail(String userEmail);
+	
+	List<AdminVaccinationInfo> findAdminVaccination();
 
 }

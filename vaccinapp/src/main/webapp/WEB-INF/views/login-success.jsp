@@ -13,13 +13,9 @@
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <script>
-window.onload = function(){
-	$("#newVaccination").hide();
-}
-function showhide(){
-	$("#newVaccination").show();
-}
-
+	function showhide() {
+		$("#newVaccination").show();
+	}
 </script>
 <style>
 body {
@@ -35,9 +31,8 @@ a {
 	display: block;
 }
 
-#login, #logout{
-
-display: inline;
+#login, #logout {
+	display: inline;
 }
 </style>
 <%@ page isELIgnored="false"%>
@@ -52,11 +47,10 @@ display: inline;
 				<h1>${message}</h1>
 			</div>
 			<div class="col-md-6" style="text-align: right">
-			
-				<br> 
-				<a id="login" href="login"><input type="button"
-					class="btn btn-primary btn-lg" value="Home" /></a>
-				<a id="logout" href="logout"><input type="button"
+
+				<br> <a id="login" href="login"><input type="button"
+					class="btn btn-primary btn-lg" value="Home" /></a> <a id="logout"
+					href="logout"><input type="button"
 					class="btn btn-primary btn-lg" value="Logout" /></a>
 			</div>
 		</div>
@@ -65,8 +59,9 @@ display: inline;
 
 	<div class="row">
 		<div class="col-md-6">
-			<br> <a><input type="button" onclick="showhide();" class="btn btn-primary btn-lg"
-				value="Add New Vaccination" /></a><br> <a href="viewAllRecords"><input type="button"
+			<br> <a><input type="button" onclick="showhide();"
+				class="btn btn-primary btn-lg" value="Add New Vaccination" /></a><br>
+			<a href="viewAllRecords"><input type="button"
 				class="btn btn-primary btn-lg" value="View All Vaccinations" /></a>
 		</div>
 		<div id="newVaccination" class="col-md-4">
@@ -82,19 +77,26 @@ display: inline;
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="vaccinType" class="col-md-3 control-label">Vaccination</label>
+					<label for="vaccinType" class="col-md-3 control-label">Vaccination
+					</label>
 					<div class="col-md-12">
-						<form:input path="vaccinType" cssClass="form-control" />
+						<form:select path="vaccinType" cssClass="form-control">
+							<c:forEach var="adminVaccinationInfo"
+								items="${adminVaccinationInfo}">
+								<form:option value="${adminVaccinationInfo.vaccinType}">${adminVaccinationInfo.vaccinType} (${adminVaccinationInfo.notes})</form:option>
+							</c:forEach>
+						</form:select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="vaccinDate" class="col-md-6 control-label">Date (MM/DD/YYYY)</label>
+					<label for="vaccinDate" class="col-md-6 control-label">Date
+						(MM/DD/YYYY)</label>
 					<div class="col-md-12">
-						<form:input path="vaccinDate" cssClass="form-control" />
+						<form:input path="vaccinDate" cssClass="form-control"  />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="notes" class="col-md-3 control-label">Notes</label>
+					<label for="notes" class="col-md-3 control-label">Remarks</label>
 					<div class="col-md-12">
 						<form:input path="notes" cssClass="form-control" />
 					</div>

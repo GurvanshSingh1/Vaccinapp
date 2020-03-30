@@ -2,6 +2,7 @@ package com.user.mareez.model;
 
 public class UserVaccinationInfo {
 	private String fname, vaccinType, notes, vaccinDate;
+	private int vaccinId;
 
 	public String getFname() {
 		return fname;
@@ -33,6 +34,14 @@ public class UserVaccinationInfo {
 
 	public void setVaccinDate(String vaccinDate) {
 		this.vaccinDate = vaccinDate;
+	}
+
+	public int getVaccinId() {
+		return vaccinId;
+	}
+
+	public void setVaccinId(int vaccinId) {
+		this.vaccinId = vaccinId;
 	}
 	
 	
