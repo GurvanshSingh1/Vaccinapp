@@ -61,11 +61,17 @@ a {
 		<div class="col-md-6">
 			<br> <a><input type="button" onclick="showhide();"
 				class="btn btn-primary btn-lg" value="Add New Vaccination" /></a><br>
+			<a href="viewAllAdminRecords"><input type="button"
+				class="btn btn-primary btn-lg" value="View/Remove Vaccinations" /></a><br>
+			<a href="viewPendingApprovals"><input type="button"
+				class="btn btn-primary btn-lg" value="Pending User Approvals" /></a> <br>
 			<a href="#"><input type="button" class="btn btn-primary btn-lg"
-				value="View All Vaccinations" /></a><br> <a
-				href="viewPendingApprovals"><input type="button"
-				class="btn btn-primary btn-lg" value="Pending User Approvals" /></a>
-
+				value="Add Clinics" /></a> <br> <a href="viewPendingApprovals"><input
+				type="button" class="btn btn-primary btn-lg"
+				value="View/Remove Clinics" /></a> <br> <a href="#"><input
+				type="button" class="btn btn-primary btn-lg"
+				value="View/Reply User Enquires" /></a> <br> <a href="#"><input
+				type="button" class="btn btn-primary btn-lg" value="Post News" /></a>
 		</div>
 		<div id="newVaccination" class="col-md-4">
 			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>

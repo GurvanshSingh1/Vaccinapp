@@ -13,12 +13,13 @@ public interface UserDao {
 	
 	User findByEmail(String email);
 	List<UserVaccinationInfo> findVaccinationByUser(String fName);
-	int deleteUserVaccination(int vaccinType);
+	int deleteUserVaccination(int vaccinId);
 	
 	List<User> findUnapprovedUsers();
 	int approveUserByEmail(String userEmail);
 	
 	List<AdminVaccinationInfo> findAdminVaccination();
 	int insertAdminUserVaccination(String vaccinType, String notes, int vaccinEffective);
+	int deleteAdminVaccination(int vaccinId);
 
 }

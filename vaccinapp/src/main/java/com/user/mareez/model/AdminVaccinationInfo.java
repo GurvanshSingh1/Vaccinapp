@@ -2,7 +2,7 @@ package com.user.mareez.model;
 
 public class AdminVaccinationInfo {
 	private String vaccinType, notes;
-	int vaccinEffective;
+	private int vaccinEffective, vaccinId;
 
 	public String getVaccinType() {
 		return vaccinType;
@@ -26,6 +26,14 @@ public class AdminVaccinationInfo {
 
 	public void setVaccinEffective(int vaccinEffective) {
 		this.vaccinEffective = vaccinEffective;
+	}
+
+	public int getVaccinId() {
+		return vaccinId;
+	}
+
+	public void setVaccinId(int vaccinId) {
+		this.vaccinId = vaccinId;
 	}
 
 }
