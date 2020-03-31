@@ -6,3 +6,4 @@ Gurvansh-03/28/2020-Added View All Records Functionality
 Gurvansh-03/29/2020-Created Admin and Delete user vaccination process
 Jasmeet-03/29/2020-Added Dynamic Vaccination
 Gurvansh-03/30/2020-Created Admin Vaccination Form
+Gurvansh-03/30/2020-View All Vaccination Admin
