@@ -39,6 +39,11 @@ public class LoginController {
 	public UserVaccinationInfo userVaccinationInfo() {
 		return new UserVaccinationInfo();
 	}
+	
+	@ModelAttribute("AdminVaccinationInfo")
+	public AdminVaccinationInfo adminVaccinationInfo() {
+		return new AdminVaccinationInfo();
+	}
 
 	/**
 	 * Method to show the initial HTML form
@@ -54,7 +59,11 @@ public class LoginController {
 			model.addAttribute("user", user);
 			model.addAttribute("userName", user.getFirstName());
 			model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
-			return "login-success";
+			if (user.getUserType().contentEquals("USER")) {
+				return "login-success";
+			} else {
+				return "login-success-admin";
+			}
 		}
 		return "login";
 	}

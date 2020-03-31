@@ -29,7 +29,7 @@ CREATE TABLE userVaccination (
 );
 
 CREATE TABLE adminVaccination (
-  vaccinId    INTEGER ,
+  vaccinId    INTEGER identity ,
   vaccinType VARCHAR(30),
   notes VARCHAR(100),
   vaccinEffective  INTEGER
