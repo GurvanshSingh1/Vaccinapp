@@ -3,6 +3,8 @@ package com.user.mareez.dao;
 import java.util.List;
 
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.DailyNews;
+import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
 
@@ -21,5 +23,13 @@ public interface UserDao {
 	List<AdminVaccinationInfo> findAdminVaccination();
 	int insertAdminUserVaccination(String vaccinType, String notes, int vaccinEffective);
 	int deleteAdminVaccination(int vaccinId);
+	
+	
+	int insertDailyNews(String news, String firstName, String date);
+	List<DailyNews> findDailyNews();
+	
+	
+	int insertEnquiry(String enquiry, String firstName, String email);
+	List<Enquiry> findEnquiryByUser(String email);
 
 }

@@ -13,8 +13,25 @@
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <script>
-	function showhide() {
+	window.onload = function() {
+		$("#result").show();
+
+		$("#postNews").hide();
+		$("#newVaccination").hide();
+	}
+
+	function showhideNewVaccination() {
 		$("#newVaccination").show();
+
+		$("#postNews").hide();
+		$("#result").hide();
+	}
+
+	function showhideNews() {
+		$("#postNews").show();
+
+		$("#newVaccination").hide();
+		$("#result").hide();
 	}
 </script>
 <style>
@@ -58,26 +75,38 @@ a {
 	<br>
 
 	<div class="row">
+
 		<div class="col-md-6">
-			<br> <a><input type="button" onclick="showhide();"
-				class="btn btn-primary btn-lg" value="Add New Vaccination" /></a><br>
-			<a href="viewAllAdminRecords"><input type="button"
+			<br> <a><input type="button"
+				onclick="showhideNewVaccination();" class="btn btn-primary btn-lg"
+				value="Add New Vaccination" /></a><br> <a
+				href="viewAllAdminRecords"><input type="button"
 				class="btn btn-primary btn-lg" value="View/Remove Vaccinations" /></a><br>
 			<a href="viewPendingApprovals"><input type="button"
 				class="btn btn-primary btn-lg" value="Pending User Approvals" /></a> <br>
 			<a href="#"><input type="button" class="btn btn-primary btn-lg"
-				value="Add Clinics" /></a> <br> <a href="viewPendingApprovals"><input
+				value="Add Clinics" /></a> <br> <a href="#"><input
 				type="button" class="btn btn-primary btn-lg"
 				value="View/Remove Clinics" /></a> <br> <a href="#"><input
 				type="button" class="btn btn-primary btn-lg"
 				value="View/Reply User Enquires" /></a> <br> <a href="#"><input
-				type="button" class="btn btn-primary btn-lg" value="Post News" /></a>
+				type="button" onclick="showhideNews();"
+				class="btn btn-primary btn-lg" value="Post News" /></a>
 		</div>
+
+
+		<!--  Result Section -->
+		<div id="result" class="col-md-4">
+			<h1 class="text align-self-center p-2">${approvedNews}</h1>
+			<h1 class="text align-self-center p-2">${approved}</h1>
+		</div>
+
+
+		<!--  NEW Vaccination Form -->
 		<div id="newVaccination" class="col-md-4">
 			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>
 			<form:form action="addNewAdminVaccination" cssClass="form-horizontal"
 				method="post" modelAttribute="AdminVaccinationInfo">
-
 				<div class="form-group">
 					<label for="vaccinType" class="col-md-3 control-label">Vaccination</label>
 					<div class="col-md-12">
@@ -97,23 +126,38 @@ a {
 						<form:input path="vaccinEffective" cssClass="form-control" />
 					</div>
 				</div>
-
 				<div class="form-group">
-
 					<div class="col-md-offset-3 col-md-9">
 						<form:button cssClass="btn btn-primary">Add Record</form:button>
 						<br>
-						<p>${approved}</p>
-
 					</div>
 				</div>
-
 			</form:form>
+		</div>
 
+
+
+
+		<!--  Daily News Form -->
+		<div id="postNews" class="col-md-4">
+			<h1 class="text align-self-center p-2">Post News...</h1>
+			<form:form action="postNews" cssClass="form-horizontal" method="post"
+				modelAttribute="DailyNews">
+				<div class="form-group">
+					<label for="news" class="col-md-3 control-label">News</label>
+					<div class="col-md-12">
+						<form:textarea style="height:150px" path="news" cssClass="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-3 col-md-9">
+						<form:button cssClass="btn btn-primary">Post</form:button>
+						<br>
+					</div>
+				</div>
+			</form:form>
 		</div>
 	</div>
-
-
 
 </body>
 </html>
