@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.user.mareez.dao.UserDao;
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.DailyNews;
+import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.LoginInfo;
 import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
@@ -43,6 +45,16 @@ public class LoginController {
 	@ModelAttribute("AdminVaccinationInfo")
 	public AdminVaccinationInfo adminVaccinationInfo() {
 		return new AdminVaccinationInfo();
+	}
+	
+	@ModelAttribute("DailyNews")
+	public DailyNews dailyNews() {
+		return new DailyNews();
+	}
+	
+	@ModelAttribute("Enquiry")
+	public Enquiry enquiry() {
+		return new Enquiry();
 	}
 
 	/**

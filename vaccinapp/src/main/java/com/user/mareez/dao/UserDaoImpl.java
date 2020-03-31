@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.DailyNews;
+import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
 import com.user.mareez.model.UserVaccinationInfo;
 
@@ -169,6 +171,19 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	private static final class DailyNewsMapper implements RowMapper<DailyNews> {
+
+		public DailyNews mapRow(ResultSet rs, int rowNum) throws SQLException {
+			DailyNews dailyNews = new DailyNews();
+			dailyNews.setNewsId(Integer.parseInt(rs.getString("newsId")));
+			dailyNews.setNews(rs.getString("news"));
+			dailyNews.setPostedBy(rs.getString("postedBy"));
+			dailyNews.setPostdate(rs.getString("postDate"));
+			
+			return dailyNews;
+		}
+	}
+	
 	public int insertAdminUserVaccination(String vaccinType, String notes, int vaccinEffective) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("vaccinType", vaccinType);
@@ -187,6 +202,70 @@ public class UserDaoImpl implements UserDao {
 
 		String sql = "DELETE FROM adminVaccination WHERE vaccinId=:vaccinId ";
 		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public int insertDailyNews(String news, String firstName, String date) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("news", news);
+		params.put("firstname", firstName);
+		params.put("date", date);
+	
+
+		String sql = "INSERT INTO dailyNews (news, postedBy, postDate) VALUES (:news, :firstname, :date)";
+		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public List<DailyNews> findDailyNews() {
+		// TODO Auto-generated method stub
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("1", "1=1");
+		String sql = "SELECT * FROM dailyNews order by newsId desc";
+
+		List<DailyNews> result = namedParameterJdbcTemplate.query(sql, params, new DailyNewsMapper());
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
+	}
+
+	public int insertEnquiry(String enquiry, String firstName, String email) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("enquiry", enquiry);
+		params.put("firstname", firstName);
+		params.put("email", email);
+	
+
+		String sql = "INSERT INTO enquiry(enquiry, name, email ,response, isReplied) VALUES (:enquiry, :firstname, :email, 'Waiting Response!', 0)";
+		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public List<Enquiry> findEnquiryByUser(String email) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", email);
+
+		String sql = "SELECT * FROM enquiry WHERE email=:email";
+
+		List<Enquiry> result = namedParameterJdbcTemplate.query(sql, params, new EnquiryMapper());
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
+	}
+	
+	private static final class EnquiryMapper implements RowMapper<Enquiry> {
+
+		public Enquiry mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Enquiry enquiry = new Enquiry();
+			enquiry.setEnquiryId(Integer.parseInt(rs.getString("enquiryId")));
+			enquiry.setEnquiry(rs.getString("enquiry"));
+			enquiry.setName(rs.getString("name"));
+			enquiry.setEmail(rs.getString("email"));
+			enquiry.setResponse(rs.getString("response"));
+			enquiry.setIsReplied(Integer.parseInt(rs.getString("isReplied")));
+			
+			
+			return enquiry;
+		}
 	}
 
 }

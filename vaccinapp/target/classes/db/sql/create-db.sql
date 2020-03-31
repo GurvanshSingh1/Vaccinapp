@@ -4,6 +4,8 @@ DROP TABLE students IF EXISTS;
 DROP TABLE courses IF EXISTS;
 DROP TABLE userVaccination IF EXISTS;
 DROP TABLE adminVaccination IF EXISTS;
+DROP TABLE dailyNews IF EXISTS;
+DROP TABLE enquiry IF EXISTS;
 
 
 CREATE TABLE users (
@@ -33,6 +35,22 @@ CREATE TABLE adminVaccination (
   vaccinType VARCHAR(30),
   notes VARCHAR(100),
   vaccinEffective  INTEGER
+);
+
+CREATE TABLE dailyNews (
+  newsId    INTEGER identity ,
+  news VARCHAR(200),
+  postedBy VARCHAR(100),
+  postDate  VARCHAR(50)
+);
+
+CREATE TABLE enquiry (
+  enquiryId    INTEGER identity ,
+  enquiry VARCHAR(200),
+  name VARCHAR(50),
+  email  VARCHAR(50),
+  response VARCHAR(200),
+  isReplied INTEGER
 );
 
 CREATE TABLE students (
