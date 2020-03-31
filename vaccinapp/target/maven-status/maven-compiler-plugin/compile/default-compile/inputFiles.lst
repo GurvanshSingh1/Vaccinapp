@@ -1,5 +1,6 @@
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/model/User.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/controller/AddVaccinationController.java
+/Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/controller/AddAdminVaccinationController.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/config/db/H2DataSource.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/controller/RegisterController.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/dao/UserDao.java
@@ -12,6 +13,7 @@
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/dao/UserDaoImpl.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/dao/CourseDao.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/model/Student.java
+/Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/model/AdminVaccinationInfo.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/config/SpringMvcDispatcherServletInitializer.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/model/Message.java
 /Users/gurvanshsingh/git/Vaccinapp/vaccinapp/src/main/java/com/user/mareez/config/RootConfig.java

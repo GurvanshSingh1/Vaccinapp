@@ -161,6 +161,7 @@ public class UserDaoImpl implements UserDao {
 
 		public AdminVaccinationInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 			AdminVaccinationInfo adminVaccinationInfo = new AdminVaccinationInfo();
+			adminVaccinationInfo.setVaccinId(Integer.parseInt(rs.getString("vaccinId")));
 			adminVaccinationInfo.setVaccinType(rs.getString("vaccinType"));
 			adminVaccinationInfo.setNotes(rs.getString("notes"));
 			adminVaccinationInfo.setVaccinEffective(Integer.parseInt(rs.getString("vaccinEffective")));
@@ -176,6 +177,15 @@ public class UserDaoImpl implements UserDao {
 	
 
 		String sql = "INSERT INTO adminVaccination (vaccinType, notes, vaccinEffective) VALUES (:vaccinType, :notes, :vaccinEffective)";
+		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public int deleteAdminVaccination(int vaccinId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("vaccinId", vaccinId);
+
+		String sql = "DELETE FROM adminVaccination WHERE vaccinId=:vaccinId ";
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
 

@@ -62,7 +62,16 @@ a {
 			<br> <a><input type="button" onclick="showhide();"
 				class="btn btn-primary btn-lg" value="Add New Vaccination" /></a><br>
 			<a href="viewAllRecords"><input type="button"
-				class="btn btn-primary btn-lg" value="View All Vaccinations" /></a>
+				class="btn btn-primary btn-lg" value="View/Remove Vaccinations" /></a>
+				<br>
+			<a href="#"><input type="button"
+				class="btn btn-primary btn-lg" value="View Daily News" /></a>
+				<br>
+			<a href="#"><input type="button"
+				class="btn btn-primary btn-lg" value="Enquire Us" /></a>
+				<br>
+			<a href="viewAllRecords"><input type="button"
+				class="btn btn-primary btn-lg" value="View Enquiry Status" /></a>
 		</div>
 		<div id="newVaccination" class="col-md-4">
 			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>
