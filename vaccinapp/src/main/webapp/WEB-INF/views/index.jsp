@@ -57,10 +57,14 @@ h1 {
 		setTimeout(function() {
 			document.getElementById("main").innerHTML = "VACCINAP";
 		}, 2600)
+		
+		setTimeout(function() {
+			document.getElementById("main").innerHTML = "VACCINAPP";
+		}, 2900)
 
 		setTimeout(function() {
-			document.getElementById("main").innerHTML = "VACCINAP!";
-		}, 2900)
+			document.getElementById("main").innerHTML = "VACCINAPP!";
+		}, 3200)
 
 		setTimeout(function() {
 			location.replace("http://localhost:8080/login");

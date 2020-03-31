@@ -29,7 +29,7 @@ label, h1, p {
 		<header class="container h-100">
 			<div class="d-flex align-items-center justify-content-center h-100">
 				<div class="d-flex flex-column">
-					<h1 class="text align-self-center p-2">Vaccinap Login</h1>
+					<h1 class="text align-self-center p-2">Vaccinapp Login</h1>
 					<form:form action="login" cssClass="form-horizontal" method="post"
 						modelAttribute="loginInfo">
 

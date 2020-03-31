@@ -168,4 +168,15 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	public int insertAdminUserVaccination(String vaccinType, String notes, int vaccinEffective) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("vaccinType", vaccinType);
+		params.put("notes", notes);
+		params.put("vaccinEffective", vaccinEffective);
+	
+
+		String sql = "INSERT INTO adminVaccination (vaccinType, notes, vaccinEffective) VALUES (:vaccinType, :notes, :vaccinEffective)";
+		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
 }

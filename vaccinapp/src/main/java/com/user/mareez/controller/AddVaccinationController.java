@@ -36,7 +36,7 @@ public class AddVaccinationController {
 	}
 
 	@PostMapping("/addNewUserVaccination")
-	public String saveUser(HttpSession session,
+	public String saveUserVaccination(HttpSession session,
 			@ModelAttribute("UserVaccinationInfo") UserVaccinationInfo userVaccinationInfo, Model model) {
 
 		// Implement business logic to save user details into a database

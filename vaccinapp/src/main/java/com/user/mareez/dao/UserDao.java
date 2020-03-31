@@ -19,5 +19,6 @@ public interface UserDao {
 	int approveUserByEmail(String userEmail);
 	
 	List<AdminVaccinationInfo> findAdminVaccination();
+	int insertAdminUserVaccination(String vaccinType, String notes, int vaccinEffective);
 
 }
