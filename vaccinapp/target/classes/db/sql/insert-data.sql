@@ -13,6 +13,9 @@ INSERT INTO dailyNews VALUES (2, 'News 2 here...', 'Admin', '01/01/2020');
 INSERT INTO enquiry VALUES (1, 'What is your name?', 'test1', 'abc@abc.com', '', 0);
 INSERT INTO enquiry VALUES (2, 'How are you doing?', 'test1', 'abc@abc.com', '', 0);
 
+INSERT INTO clinics VALUES (1, 'Surrey Hospital', 'Surrey', 'surrey@surrey.com', '1234567890');
+INSERT INTO clinics VALUES (2, 'Burnaby Hospital', 'Burnaby', 'burnaby@burnaby.com', '0987654321');
+
 INSERT INTO students VALUES('lis@douglascollege.ca', 'Simon Li', '123456');
 INSERT INTO students VALUES('wongi5@douglascollege.ca', 'Ivan Wong', '654321');
 

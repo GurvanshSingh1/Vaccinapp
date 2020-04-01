@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.ClinicInfo;
 import com.user.mareez.model.DailyNews;
 import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
@@ -289,5 +290,69 @@ public class UserDaoImpl implements UserDao {
 		String sql = "UPDATE enquiry SET response=:response WHERE enquiryId=:enquiryId ";
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
+
+	public int insertNewClinic(String clinicName, String clinicAddress, String clinicContact, String clinicEmail) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("clinicName", clinicName);
+		params.put("clinicAddress", clinicAddress);
+		params.put("clinicContact", clinicContact);
+		params.put("clinicEmail", clinicEmail);
+	
+
+		String sql = "INSERT INTO clinics (clinicName, clinicAddress, clinicContact, clinicEmail) VALUES (:clinicName, :clinicAddress, :clinicContact, :clinicEmail)";
+		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public List<ClinicInfo> findClinics() {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", "email");
+
+		String sql = "SELECT * FROM clinics";
+
+		List<ClinicInfo> result = namedParameterJdbcTemplate.query(sql, params, new ClinicMapper());
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
+	}
+	
+	private static final class ClinicMapper implements RowMapper<ClinicInfo> {
+
+		public ClinicInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+			ClinicInfo clinicInfo = new ClinicInfo();
+			clinicInfo.setClinicId(Integer.parseInt(rs.getString("clinicId")));
+			clinicInfo.setClinicName(rs.getString("clinicName"));
+			clinicInfo.setClinicAddress(rs.getString("clinicAddress"));
+			clinicInfo.setClinicEmail(rs.getString("clinicEmail"));
+			clinicInfo.setClinicContact(rs.getString("clinicContact"));
+			
+			
+			return clinicInfo;
+		}
+	}
+
+	public int deleteClinic(int clinicId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("clinicId", clinicId);
+
+		String sql = "DELETE FROM clinics WHERE clinicId=:clinicId ";
+		return namedParameterJdbcTemplate.update(sql, params);
+	}
+
+	public List<ClinicInfo> findClinics(int clinicId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("clinicId", clinicId);
+
+		String sql = "SELECT * FROM clinics WHERE clinicId = :clinicId";
+
+		List<ClinicInfo> result = namedParameterJdbcTemplate.query(sql, params, new ClinicMapper());
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
+	}
+	
+	
 
 }
