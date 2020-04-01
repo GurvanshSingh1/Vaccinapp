@@ -18,6 +18,7 @@
 
 		$("#postNews").hide();
 		$("#newVaccination").hide();
+		$("#newClinic").hide();
 	}
 
 	function showhideNewVaccination() {
@@ -25,6 +26,7 @@
 
 		$("#postNews").hide();
 		$("#result").hide();
+		$("#newClinic").hide();
 	}
 
 	function showhideNews() {
@@ -32,6 +34,15 @@
 
 		$("#newVaccination").hide();
 		$("#result").hide();
+		$("#newClinic").hide();
+	}
+		
+	function showhideClinic() {
+		$("#newClinic").show();
+
+		$("#newVaccination").hide();
+		$("#result").hide();
+		$("#postNews").hide();
 	}
 </script>
 <style>
@@ -84,8 +95,8 @@ a {
 				class="btn btn-primary btn-lg" value="View/Remove Vaccinations" /></a><br>
 			<a href="viewPendingApprovals"><input type="button"
 				class="btn btn-primary btn-lg" value="Pending User Approvals" /></a> <br>
-			<a href="#"><input type="button" class="btn btn-primary btn-lg"
-				value="Add Clinics" /></a> <br> <a href="#"><input
+			<a href="#"><input type="button" onclick="showhideClinic();" class="btn btn-primary btn-lg"
+				value="Add Clinics" /></a> <br> <a href="viewClinics"><input
 				type="button" class="btn btn-primary btn-lg"
 				value="View/Remove Clinics" /></a> <br> <a href="viewAdminEnquiry"><input
 				type="button" class="btn btn-primary btn-lg"
@@ -99,6 +110,7 @@ a {
 		<div id="result" class="col-md-4">
 			<h1 class="text align-self-center p-2">${approvedNews}</h1>
 			<h1 class="text align-self-center p-2">${approved}</h1>
+			<h1 class="text align-self-center p-2">${approvedClinic}</h1>
 		</div>
 
 
@@ -146,12 +158,52 @@ a {
 				<div class="form-group">
 					<label for="news" class="col-md-3 control-label">News</label>
 					<div class="col-md-12">
-						<form:textarea style="height:150px" path="news" cssClass="form-control" />
+						<form:textarea style="height:150px" path="news"
+							cssClass="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-3 col-md-9">
 						<form:button cssClass="btn btn-primary">Post</form:button>
+						<br>
+					</div>
+				</div>
+			</form:form>
+		</div>
+
+
+		<!--  NEW Clinic Form -->
+		<div id="newClinic" class="col-md-4">
+			<h1 class="text align-self-center p-2">Add New Clinic...</h1>
+			<form:form action="addNewClinic" cssClass="form-horizontal"
+				method="post" modelAttribute="ClinicInfo">
+				<div class="form-group">
+					<label for="clinicName" class="col-md-3 control-label">Clinic Name</label>
+					<div class="col-md-12">
+						<form:input path="clinicName" cssClass="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="clinicAddress" class="col-md-6 control-label">Clinic Address</label>
+					<div class="col-md-12">
+						<form:input path="clinicAddress" cssClass="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="clinicContact" class="col-md-3 control-label">Clinic Contact</label>
+					<div class="col-md-12">
+						<form:input path="clinicContact" cssClass="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="clinicEmail" class="col-md-3 control-label">Clinic Email</label>
+					<div class="col-md-12">
+						<form:input path="clinicEmail" cssClass="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-3 col-md-9">
+						<form:button cssClass="btn btn-primary">Add Clinic</form:button>
 						<br>
 					</div>
 				</div>

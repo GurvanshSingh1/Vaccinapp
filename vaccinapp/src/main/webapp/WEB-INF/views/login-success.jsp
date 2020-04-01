@@ -18,6 +18,7 @@
 
 		$("#enquiry").hide();
 		$("#newVaccination").hide();
+		$("#clinic").hide();
 	}
 
 	function showhideNewVaccination() {
@@ -25,6 +26,7 @@
 
 		$("#enquiry").hide();
 		$("#result").hide();
+		$("#clinic").hide();
 	}
 
 	function showhideEnquiry() {
@@ -32,6 +34,20 @@
 
 		$("#newVaccination").hide();
 		$("#result").hide();
+		$("#clinic").hide();
+	}
+
+	function showhideClinic() {
+		$("#clinic").show();
+
+		$("#newVaccination").hide();
+		$("#result").hide();
+		$("#enquiry").hide();
+	}
+
+	function getClinicDetail(clinicId) {
+		location.replace("http://localhost:8080/viewClinicDetails?clinicId="
+				+ clinicId);
 	}
 </script>
 <style>
@@ -72,30 +88,32 @@ a {
 			</div>
 		</div>
 	</div>
+					<marquee><p>${todayNews}</p></marquee>
 	<br>
 
 	<div class="row">
 		<div class="col-md-6">
-			<br> <a><input type="button" onclick="showhideNewVaccination();"
-				class="btn btn-primary btn-lg" value="Add New Vaccination" /></a><br>
-			<a href="viewAllRecords"><input type="button"
-				class="btn btn-primary btn-lg" value="View/Remove Vaccinations" /></a>
-			<br> <a href="viewDailyNews"><input type="button"
-				class="btn btn-primary btn-lg" value="View Daily News" /></a> <br>
-			<a href="#"><input type="button"
-				class="btn btn-primary btn-lg" value="View Clinics" /></a> <br>
-			<a href="#"><input type="button" onclick="showhideEnquiry();" class="btn btn-primary btn-lg"
-				value="Enquire Us" /></a> <br> <a href="viewEnquiry"><input
+			<br> <a><input type="button"
+				onclick="showhideNewVaccination();" class="btn btn-primary btn-lg"
+				value="Add New Vaccination" /></a><br> <a href="viewAllRecords"><input
 				type="button" class="btn btn-primary btn-lg"
-				value="View Enquiry Status" /></a>
+				value="View/Remove Vaccinations" /></a> <br> <a
+				href="viewDailyNews"><input type="button"
+				class="btn btn-primary btn-lg" value="View Daily News" /></a> <br>
+			<a href="#"><input type="button" onclick="showhideClinic();"
+				class="btn btn-primary btn-lg" value="View Clinics" /></a> <br> <a
+				href="#"><input type="button" onclick="showhideEnquiry();"
+				class="btn btn-primary btn-lg" value="Enquire Us" /></a> <br> <a
+				href="viewEnquiry"><input type="button"
+				class="btn btn-primary btn-lg" value="View Enquiry Status" /></a>
 		</div>
-		
-				<!--  Result Section -->
+
+		<!--  Result Section -->
 		<div id="result" class="col-md-4">
 			<h1 class="text align-self-center p-2">${approvedEnquiry}</h1>
 			<h1 class="text align-self-center p-2">${approved}</h1>
 		</div>
-		
+
 		<!--  New Vaccination Section -->
 		<div id="newVaccination" class="col-md-4">
 			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>
@@ -147,19 +165,20 @@ a {
 			</form:form>
 
 		</div>
-		
-		
-		
-		
-				<!--  Enquiry Form -->
+
+
+
+
+		<!--  Enquiry Form -->
 		<div id="enquiry" class="col-md-4">
 			<h1 class="text align-self-center p-2">Enquire Us..</h1>
-			<form:form action="addEnquiry" cssClass="form-horizontal" method="post"
-				modelAttribute="Enquiry">
+			<form:form action="addEnquiry" cssClass="form-horizontal"
+				method="post" modelAttribute="Enquiry">
 				<div class="form-group">
 					<label for="news" class="col-md-3 control-label">Enquiry</label>
 					<div class="col-md-12">
-						<form:textarea style="height:150px" path="enquiry" cssClass="form-control" />
+						<form:textarea style="height:150px" path="enquiry"
+							cssClass="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -170,7 +189,29 @@ a {
 				</div>
 			</form:form>
 		</div>
-		
+
+
+
+		<!--  Clinic Form -->
+		<div id="clinic" class="col-md-4">
+			<h1 class="text align-self-center p-2">Clinic Details..</h1>
+			<form:form modelAttribute="ClinicInfo">
+				<div class="form-group">
+					<label for="vaccinType" class="col-md-4 control-label">Select
+						a Clinic </label>
+					<div class="col-md-12">
+						<form:select path="clinicName"
+							onchange="getClinicDetail(this.value);" cssClass="form-control">
+							<form:option value="">Select a Clinic</form:option>
+							<c:forEach var="clinicInfo" items="${clinicInfo}">
+								<form:option value="${clinicInfo.clinicId}">${clinicInfo.clinicName}</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
+			</form:form>
+		</div>
+
 	</div>
 
 

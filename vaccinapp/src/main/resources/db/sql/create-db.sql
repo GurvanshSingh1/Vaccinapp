@@ -6,6 +6,7 @@ DROP TABLE userVaccination IF EXISTS;
 DROP TABLE adminVaccination IF EXISTS;
 DROP TABLE dailyNews IF EXISTS;
 DROP TABLE enquiry IF EXISTS;
+DROP TABLE clinics IF EXISTS;
 
 
 CREATE TABLE users (
@@ -51,6 +52,14 @@ CREATE TABLE enquiry (
   email  VARCHAR(50),
   response VARCHAR(200),
   isReplied INTEGER
+);
+
+CREATE TABLE clinics (
+  clinicId    INTEGER identity ,
+  clinicName VARCHAR(200),
+  clinicAddress VARCHAR(50),
+  clinicEmail  VARCHAR(50),
+  clinicContact VARCHAR(200)
 );
 
 CREATE TABLE students (

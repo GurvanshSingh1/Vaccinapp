@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.user.mareez.dao.UserDao;
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.ClinicInfo;
 import com.user.mareez.model.DailyNews;
 import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
@@ -129,5 +130,15 @@ public class AddVaccinationController {
 			model.addAttribute("enquiry", enquiry);
 		}
 		return "view-all-enquiry";
+	}
+	
+	@GetMapping("/viewClinicDetails")
+	public String viewClinicDetails(@RequestParam("clinicId") String clinicId, HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			List<ClinicInfo> clinicInfo = userDao.findClinics(Integer.parseInt(clinicId));
+			model.addAttribute("clinicInfo", clinicInfo);
+		}
+		return "view-all-clinics";
 	}
 }

@@ -3,6 +3,7 @@ package com.user.mareez.dao;
 import java.util.List;
 
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.ClinicInfo;
 import com.user.mareez.model.DailyNews;
 import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
@@ -32,7 +33,12 @@ public interface UserDao {
 	int insertEnquiry(String enquiry, String firstName, String email);
 	List<Enquiry> findEnquiryByUser(String email);
 	List<Enquiry> findEnquiryByUser();
-	
 	int updateEnquiryReply(int enquiryId, String response);
+	
+	
+	int insertNewClinic(String clinicName, String clinicAddress, String clinicContact, String clinicEmail);
+	List<ClinicInfo> findClinics();
+	int deleteClinic(int clinicId);
+	List<ClinicInfo> findClinics(int clinicId);
 
 }

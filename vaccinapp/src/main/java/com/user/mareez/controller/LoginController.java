@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.user.mareez.dao.UserDao;
 import com.user.mareez.model.AdminVaccinationInfo;
+import com.user.mareez.model.ClinicInfo;
 import com.user.mareez.model.DailyNews;
 import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.LoginInfo;
@@ -41,20 +42,25 @@ public class LoginController {
 	public UserVaccinationInfo userVaccinationInfo() {
 		return new UserVaccinationInfo();
 	}
-	
+
 	@ModelAttribute("AdminVaccinationInfo")
 	public AdminVaccinationInfo adminVaccinationInfo() {
 		return new AdminVaccinationInfo();
 	}
-	
+
 	@ModelAttribute("DailyNews")
 	public DailyNews dailyNews() {
 		return new DailyNews();
 	}
-	
+
 	@ModelAttribute("Enquiry")
 	public Enquiry enquiry() {
 		return new Enquiry();
+	}
+
+	@ModelAttribute("ClinicInfo")
+	public ClinicInfo clinicInfo() {
+		return new ClinicInfo();
 	}
 
 	/**
@@ -66,12 +72,16 @@ public class LoginController {
 	public String login(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
-			List <AdminVaccinationInfo> adminVaccinationInfo = userDao.findAdminVaccination();
+			List<AdminVaccinationInfo> adminVaccinationInfo = userDao.findAdminVaccination();
 			model.addAttribute("adminVaccinationInfo", adminVaccinationInfo);
 			model.addAttribute("user", user);
 			model.addAttribute("userName", user.getFirstName());
 			model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
 			if (user.getUserType().contentEquals("USER")) {
+				List<ClinicInfo> clinicInfo = userDao.findClinics();
+				model.addAttribute("clinicInfo", clinicInfo);
+				List<DailyNews> dailyNews = userDao.findDailyNews();
+				model.addAttribute("todayNews", "NEWS FLASH: "+ dailyNews.get(0).getNews() +" - " + dailyNews.get(0).getPostedBy());
 				return "login-success";
 			} else {
 				return "login-success-admin";
@@ -92,7 +102,7 @@ public class LoginController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute("loginInfo") LoginInfo loginInfo, Model model) {
 		User user = userDao.findByEmail(loginInfo.getEmail());
-		List <AdminVaccinationInfo> adminVaccinationInfo = userDao.findAdminVaccination();
+		List<AdminVaccinationInfo> adminVaccinationInfo = userDao.findAdminVaccination();
 		model.addAttribute("messageInvalid", "User does not exist or it is not approved by the admin yet!");
 
 		if (user != null && user.getPassword().equals(loginInfo.getPassword()) && (user.getIsApproved() == 1)) {
@@ -101,6 +111,10 @@ public class LoginController {
 			model.addAttribute("userName", user.getFirstName());
 			model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
 			if (user.getUserType().contentEquals("USER")) {
+				List<ClinicInfo> clinicInfo = userDao.findClinics();
+				model.addAttribute("clinicInfo", clinicInfo);
+				List<DailyNews> dailyNews = userDao.findDailyNews();
+				model.addAttribute("todayNews", "NEWS FLASH: "+ dailyNews.get(0).getNews() +" - " + dailyNews.get(0).getPostedBy());
 				return "login-success";
 			} else {
 				return "login-success-admin";
