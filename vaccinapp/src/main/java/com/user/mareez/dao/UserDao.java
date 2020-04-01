@@ -31,5 +31,8 @@ public interface UserDao {
 	
 	int insertEnquiry(String enquiry, String firstName, String email);
 	List<Enquiry> findEnquiryByUser(String email);
+	List<Enquiry> findEnquiryByUser();
+	
+	int updateEnquiryReply(int enquiryId, String response);
 
 }

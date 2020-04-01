@@ -87,7 +87,7 @@ a {
 			<a href="#"><input type="button" class="btn btn-primary btn-lg"
 				value="Add Clinics" /></a> <br> <a href="#"><input
 				type="button" class="btn btn-primary btn-lg"
-				value="View/Remove Clinics" /></a> <br> <a href="#"><input
+				value="View/Remove Clinics" /></a> <br> <a href="viewAdminEnquiry"><input
 				type="button" class="btn btn-primary btn-lg"
 				value="View/Reply User Enquires" /></a> <br> <a href="#"><input
 				type="button" onclick="showhideNews();"
