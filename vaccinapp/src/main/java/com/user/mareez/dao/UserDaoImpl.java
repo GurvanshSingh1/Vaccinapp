@@ -252,6 +252,19 @@ public class UserDaoImpl implements UserDao {
 		return result;
 	}
 	
+	public List<Enquiry> findEnquiryByUser() {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", "email");
+
+		String sql = "SELECT * FROM enquiry";
+
+		List<Enquiry> result = namedParameterJdbcTemplate.query(sql, params, new EnquiryMapper());
+
+		// new BeanPropertyRowMapper(Customer.class));
+
+		return result;
+	}
+	
 	private static final class EnquiryMapper implements RowMapper<Enquiry> {
 
 		public Enquiry mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -266,6 +279,15 @@ public class UserDaoImpl implements UserDao {
 			
 			return enquiry;
 		}
+	}
+
+	public int updateEnquiryReply(int enquiryId, String response) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("enquiryId", enquiryId);
+		params.put("response", response);
+
+		String sql = "UPDATE enquiry SET response=:response WHERE enquiryId=:enquiryId ";
+		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
 }

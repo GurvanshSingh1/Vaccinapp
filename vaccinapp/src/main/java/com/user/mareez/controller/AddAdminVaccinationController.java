@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.user.mareez.dao.UserDao;
 import com.user.mareez.model.AdminVaccinationInfo;
 import com.user.mareez.model.DailyNews;
+import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
 
 @SessionAttributes("user")
@@ -79,6 +80,17 @@ public class AddAdminVaccinationController {
 		}
 		return "view-all-records-admin";
 	}
+	
+	@GetMapping("/updateReply")
+	public String updateReply(@RequestParam("enquiryId") String enquiryId, @RequestParam("response") String response, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			userDao.updateEnquiryReply(Integer.parseInt(enquiryId), response);
+			List<Enquiry> enquiry = userDao.findEnquiryByUser();
+			model.addAttribute("enquiry", enquiry);
+		}
+		return "view-all-enquiry-admin";
+	}
 
 	@PostMapping("/addNewAdminVaccination")
 	public String saveUserVaccination(HttpSession session,
@@ -116,5 +128,15 @@ public class AddAdminVaccinationController {
 		model.addAttribute("userName", user.getFirstName());
 		model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
 		return "login-success-admin";
+	}
+	
+	@GetMapping("/viewAdminEnquiry")
+	public String viewEnquiry(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			List<Enquiry> enquiry = userDao.findEnquiryByUser();
+			model.addAttribute("enquiry", enquiry);
+		}
+		return "view-all-enquiry-admin";
 	}
 }
