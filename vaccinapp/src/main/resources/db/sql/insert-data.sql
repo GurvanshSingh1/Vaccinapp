@@ -15,11 +15,3 @@ INSERT INTO enquiry VALUES (2, 'How are you doing?', 'test1', 'abc@abc.com', '',
 
 INSERT INTO clinics VALUES (1, 'Surrey Hospital', 'Surrey', 'surrey@surrey.com', '1234567890');
 INSERT INTO clinics VALUES (2, 'Burnaby Hospital', 'Burnaby', 'burnaby@burnaby.com', '0987654321');
-
-INSERT INTO students VALUES('lis@douglascollege.ca', 'Simon Li', '123456');
-INSERT INTO students VALUES('wongi5@douglascollege.ca', 'Ivan Wong', '654321');
-
-INSERT INTO courses VALUES('CSIS1175', 'Introduction to Programming 1');
-INSERT INTO courses VALUES('CSIS1275', 'Introduction to Programming 2');
-
-INSERT INTO registrations VALUES('wongi5@douglascollege.ca', 'CSIS1275');
