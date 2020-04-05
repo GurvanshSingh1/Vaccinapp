@@ -10,3 +10,4 @@ Gurvansh-03/30/2020-View All Vaccination Admin
 Gurvansh-03/31/2020-News and Enquiry Functionality
 Gurvansh-03/31/2020-Added Admin Response Enquiry
 Gurvansh-03/31/2020-News Flash and Clinics
+Jasmeet-04/04/2020-Refactor Code (Remove Unwanted files)
