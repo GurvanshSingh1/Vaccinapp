@@ -60,6 +60,8 @@ a {
 					<table class="table table-striped table-bordered">
 						<tr><th>Vaccination Type</th>
 						<th>Vaccination Date</th>
+						<th>Best Before</th>
+						<th>Due In</th>
 						<th>Remarks</th>
 						<th>Remove?</th></tr>
 						<c:forEach var="userVaccinationInfo"
@@ -67,6 +69,8 @@ a {
 							<tr>
 								<td>${userVaccinationInfo.vaccinType}</td>
 								<td>${userVaccinationInfo.vaccinDate}</td>
+								<td>${userVaccinationInfo.vaccinEffective} (Months)</td>
+								<td>${userVaccinationInfo.vaccinDue} (Days)</td>
 								<td>${userVaccinationInfo.notes}</td>
 								<td><a href="deleteUserVaccination?vaccinId=${userVaccinationInfo.vaccinId}"><input type="button" value="Delete"/> </a>
 							</tr>

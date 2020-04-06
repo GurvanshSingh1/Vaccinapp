@@ -79,14 +79,15 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
-	public int insertNewUserVaccination(String fName, String vaccinationType, String vaccinationDate, String notes) {
+	public int insertNewUserVaccination(String fName, String vaccinationType, String vaccinationDate, String notes, int vaccinEffective) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("fName", fName);
 		params.put("vaccinationType", vaccinationType);
 		params.put("vaccinationDate", vaccinationDate);
 		params.put("notes", notes);
+		params.put("vaccinEffective", vaccinEffective);
 
-		String sql = "INSERT INTO userVaccination(fname, vaccinType, notes, vaccinDate) VALUES (:fName, :vaccinationType, :notes, :vaccinationDate)";
+		String sql = "INSERT INTO userVaccination(fname, vaccinType, notes, vaccinDate, vaccinEffective) VALUES (:fName, :vaccinationType, :notes, :vaccinationDate, :vaccinEffective)";
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
@@ -94,7 +95,7 @@ public class UserDaoImpl implements UserDao {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("fName", fName);
 
-		String sql = "SELECT * FROM userVaccination WHERE fname=:fName";
+		String sql = "SELECT *, DATEDIFF(DAY, CURDATE(), DATEADD(MONTH, vaccinEffective, CURDATE())) as vaccinDue  FROM userVaccination WHERE fname=:fName";
 
 		List<UserVaccinationInfo> result = namedParameterJdbcTemplate.query(sql, params, new VaccinationMapper());
 
@@ -111,6 +112,8 @@ public class UserDaoImpl implements UserDao {
 			userVaccinationInfo.setVaccinDate(rs.getString("vaccinDate"));
 			userVaccinationInfo.setVaccinType(rs.getString("vaccinType"));
 			userVaccinationInfo.setNotes(rs.getString("notes"));
+			userVaccinationInfo.setVaccinEffective(Integer.parseInt(rs.getString("vaccinEffective")));
+			userVaccinationInfo.setVaccinDue(rs.getString("vaccinDue"));
 			return userVaccinationInfo;
 		}
 	}

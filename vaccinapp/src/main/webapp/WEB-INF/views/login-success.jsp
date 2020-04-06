@@ -140,6 +140,18 @@ a {
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="vaccinEffective" class="col-md-3 control-label">Vaccination Effective (MONTHS)
+					</label>
+					<div class="col-md-12">
+						<form:select path="vaccinEffective" cssClass="form-control">
+							<c:forEach var="adminVaccinationInfo"
+								items="${adminVaccinationInfo}">
+								<form:option value="${adminVaccinationInfo.vaccinEffective}">${adminVaccinationInfo.vaccinType} (${adminVaccinationInfo.vaccinEffective} Months)</form:option>
+							</c:forEach>
+						</form:select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="vaccinDate" class="col-md-6 control-label">Date
 						(MM/DD/YYYY)</label>
 					<div class="col-md-12">

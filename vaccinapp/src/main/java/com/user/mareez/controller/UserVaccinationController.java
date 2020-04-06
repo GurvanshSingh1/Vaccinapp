@@ -56,7 +56,7 @@ public class UserVaccinationController {
 
 		int result = userDao.insertNewUserVaccination(userVaccinationInfo.getFname(),
 				userVaccinationInfo.getVaccinType(), userVaccinationInfo.getVaccinDate(),
-				userVaccinationInfo.getNotes());
+				userVaccinationInfo.getNotes(), userVaccinationInfo.getVaccinEffective());
 
 		if (result > 0) {
 
