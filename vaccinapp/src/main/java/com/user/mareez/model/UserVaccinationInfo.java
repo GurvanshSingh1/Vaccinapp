@@ -1,8 +1,8 @@
 package com.user.mareez.model;
 
 public class UserVaccinationInfo {
-	private String fname, vaccinType, notes, vaccinDate;
-	private int vaccinId;
+	private String fname, vaccinType, notes, vaccinDate, vaccinDue;
+	private int vaccinId, vaccinEffective;
 
 	public String getFname() {
 		return fname;
@@ -42,6 +42,22 @@ public class UserVaccinationInfo {
 
 	public void setVaccinId(int vaccinId) {
 		this.vaccinId = vaccinId;
+	}
+
+	public int getVaccinEffective() {
+		return vaccinEffective;
+	}
+
+	public void setVaccinEffective(int vaccinEffective) {
+		this.vaccinEffective = vaccinEffective;
+	}
+
+	public String getVaccinDue() {
+		return vaccinDue;
+	}
+
+	public void setVaccinDue(String vaccinDue) {
+		this.vaccinDue = vaccinDue;
 	}
 	
 	

@@ -25,7 +25,8 @@ CREATE TABLE userVaccination (
   fname VARCHAR(30),
   vaccinType VARCHAR(30),
   notes VARCHAR(100),
-  vaccinDate  VARCHAR(50)
+  vaccinDate  VARCHAR(50),
+  vaccinEffective  INTEGER
 );
 
 CREATE TABLE adminVaccination (

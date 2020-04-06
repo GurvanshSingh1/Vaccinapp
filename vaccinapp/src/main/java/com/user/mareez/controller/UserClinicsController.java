@@ -18,7 +18,7 @@ import com.user.mareez.model.User;
 
 @SessionAttributes("user")
 @Controller
-public class UserController {
+public class UserClinicsController {
 
 	@Autowired
 	UserDao userDao;
