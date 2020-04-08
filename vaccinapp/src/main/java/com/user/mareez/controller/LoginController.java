@@ -96,8 +96,40 @@ public class LoginController {
 				model.addAttribute("clinicInfo", clinicInfo);
 				List<DailyNews> dailyNews = userDao.findDailyNews();
 				model.addAttribute("todayNews", "NEWS FLASH: "+ dailyNews.get(0).getNews() +" - " + dailyNews.get(0).getPostedBy());
+				//Generate notifications
+				String userNotifications = "You have no notifications";
+				List<Enquiry> userEnq = userDao.findEnquiryByUser(user.getEmail());
+				int count = 0;
+				for(int i =0; i < userEnq.size(); i++) {
+					if(userEnq.get(i).getIsReplied() == 1) {
+						count++;
+					}
+				};
+				
+				if(count > 0) {
+					userNotifications = "\nYou have "+count+ " Enquiry reply(s)";
+				}
+				model.addAttribute("userNotifications",userNotifications);
+				
 				return "login-success";
 			} else {
+				//Generate notifications
+				String adminNotifications = "You have no notifications";
+				List<User> userInfo = adminDao.findUnapprovedUsers();
+				if(userInfo.size() > 0) {
+					adminNotifications = "\nYou have "+userInfo.size()+ " pending user approval(s)";
+				}
+				List<Enquiry> userEnq = adminDao.findEnquiryByUser();
+				int count = 0;
+				for(int i=0; i< userEnq.size(); i++) {
+					if(userEnq.get(i).getResponse().equalsIgnoreCase("Waiting Response!")) {
+						count++;
+					}
+				}
+				if(count > 0) {
+					adminNotifications = "\nYou have "+count+ " pending enquiry(s)";
+				}
+				model.addAttribute("adminNotifications", adminNotifications);
 				return "login-success-admin";
 			}
 		}
@@ -118,6 +150,8 @@ public class LoginController {
 		User user = userDao.findByEmail(loginInfo.getEmail());
 		List<AdminVaccinationInfo> adminVaccinationInfo = adminDao.findAdminVaccination();
 		model.addAttribute("messageInvalid", "User does not exist or it is not approved by the admin yet!");
+		
+		
 
 		if (user != null && user.getPassword().equals(loginInfo.getPassword()) && (user.getIsApproved() == 1)) {
 			model.addAttribute("user", user);
@@ -129,8 +163,40 @@ public class LoginController {
 				model.addAttribute("clinicInfo", clinicInfo);
 				List<DailyNews> dailyNews = userDao.findDailyNews();
 				model.addAttribute("todayNews", "NEWS FLASH: "+ dailyNews.get(0).getNews() +" - " + dailyNews.get(0).getPostedBy());
+				//Generate notifications
+				String userNotifications = "You have no notifications";
+				List<Enquiry> userEnq = userDao.findEnquiryByUser(user.getEmail());
+				int count = 0;
+				for(int i =0; i < userEnq.size(); i++) {
+					if(userEnq.get(i).getIsReplied() == 1) {
+						count++;
+					}
+				};
+				
+				if(count > 0) {
+					userNotifications = "\nYou have "+count+ " Enquiry reply(s)";
+				}
+				model.addAttribute("userNotifications",userNotifications);
+				
 				return "login-success";
 			} else {
+				//Generate notifications
+				String adminNotifications = "You have no notifications";
+				List<User> userInfo = adminDao.findUnapprovedUsers();
+				if(userInfo.size() > 0) {
+					adminNotifications = "\nYou have "+userInfo.size()+ " pending user approval(s)";
+				}
+				List<Enquiry> userEnq = adminDao.findEnquiryByUser();
+				int count = 0;
+				for(int i=0; i< userEnq.size(); i++) {
+					if(userEnq.get(i).getResponse().equalsIgnoreCase("Waiting Response!")) {
+						count++;
+					}
+				}
+				if(count > 0) {
+					adminNotifications = "\nYou have "+count+ " pending enquiry(s)";
+				}
+				model.addAttribute("adminNotifications", adminNotifications);
 				return "login-success-admin";
 			}
 		}
