@@ -54,6 +54,20 @@ public class UserEnquiryController {
 		model.addAttribute("user", user);
 		model.addAttribute("userName", user.getFirstName());
 		model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
+		//Generate notifications
+		String userNotifications = "You have no notifications";
+		List<Enquiry> userEnq = userDao.findEnquiryByUser(user.getEmail());
+		int count = 0;
+		for(int i =0; i < userEnq.size(); i++) {
+			if(userEnq.get(i).getIsReplied() == 1) {
+				count++;
+			}
+		};
+		
+		if(count > 0) {
+			userNotifications = "\nYou have "+count+ " Enquiry reply(s)";
+		}
+		model.addAttribute("userNotifications",userNotifications);
 		return "login-success";
 	}
 	

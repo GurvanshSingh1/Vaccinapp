@@ -17,6 +17,7 @@ import com.user.mareez.dao.AdminDao;
 import com.user.mareez.model.AdminVaccinationInfo;
 import com.user.mareez.model.ClinicInfo;
 import com.user.mareez.model.DailyNews;
+import com.user.mareez.model.Enquiry;
 import com.user.mareez.model.User;
 
 @SessionAttributes("user")
@@ -78,6 +79,23 @@ public class AdminVaccinationController {
 		model.addAttribute("user", user);
 		model.addAttribute("userName", user.getFirstName());
 		model.addAttribute("message", "Welcome, " + user.getFirstName() + "!");
+		//Generate notifications
+		String adminNotifications = "You have no notifications";
+		List<User> userInfo = adminDao.findUnapprovedUsers();
+		if(userInfo.size() > 0) {
+			adminNotifications = "\nYou have "+userInfo.size()+ " pending user approval(s)";
+		}
+		List<Enquiry> userEnq = adminDao.findEnquiryByUser();
+		int count = 0;
+		for(int i=0; i< userEnq.size(); i++) {
+			if(userEnq.get(i).getResponse().equalsIgnoreCase("Waiting Response!")) {
+				count++;
+			}
+		}
+		if(count > 0) {
+			adminNotifications = "\nYou have "+count+ " pending enquiry(s)";
+		}
+		model.addAttribute("adminNotifications", adminNotifications);
 		return "login-success-admin";
 	}
 		

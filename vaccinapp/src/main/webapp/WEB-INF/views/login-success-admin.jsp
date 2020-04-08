@@ -19,6 +19,21 @@
 		$("#postNews").hide();
 		$("#newVaccination").hide();
 		$("#newClinic").hide();
+
+		$("#myimage").click(function() {
+
+			$("#result h1").hide();
+			$("#postNews").hide();
+			$("#newVaccination").hide();
+			$("#newClinic").hide();
+
+			$("#notification").fadeIn("slow");
+			$(".dismiss").click(function() {
+				$("#notification").fadeOut("slow");
+			});
+
+		});
+
 	}
 
 	function showhideNewVaccination() {
@@ -27,6 +42,7 @@
 		$("#postNews").hide();
 		$("#result").hide();
 		$("#newClinic").hide();
+		$("#myimage").hide();
 	}
 
 	function showhideNews() {
@@ -35,14 +51,16 @@
 		$("#newVaccination").hide();
 		$("#result").hide();
 		$("#newClinic").hide();
+		$("#myimage").hide();
 	}
-		
+
 	function showhideClinic() {
 		$("#newClinic").show();
 
 		$("#newVaccination").hide();
 		$("#result").hide();
 		$("#postNews").hide();
+		$("#myimage").hide();
 	}
 </script>
 <style>
@@ -62,6 +80,32 @@ a {
 #login, #logout {
 	display: inline;
 }
+
+#notification {
+	top: 0px;
+	width: 100%;
+	z-index: 105;
+	text-align: center;
+	font-weight: normal;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	padding: 5px;
+}
+
+#notification span.dismiss {
+	border: 2px solid #FFF;
+	padding: 0 5px;
+	cursor: pointer;
+	float: right;
+	margin-right: 10px;
+}
+
+#notification a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold
+}
 </style>
 <%@ page isELIgnored="false"%>
 </head>
@@ -76,7 +120,10 @@ a {
 			</div>
 			<div class="col-md-6" style="text-align: right">
 
-				<br> <a id="login" href="login"><input type="button"
+				<br> <input type="image" id="myimage"
+					style="height: 30px; width: 30px; margin-right: 10px;"
+					src="https://img.icons8.com/nolan/64/bell.png" /> <a id="login"
+					href="login"><input type="button"
 					class="btn btn-primary btn-lg" value="Home" /></a> <a id="logout"
 					href="logout"><input type="button"
 					class="btn btn-primary btn-lg" value="Logout" /></a>
@@ -95,14 +142,15 @@ a {
 				class="btn btn-primary btn-lg" value="View/Remove Vaccinations" /></a><br>
 			<a href="viewPendingApprovals"><input type="button"
 				class="btn btn-primary btn-lg" value="Pending User Approvals" /></a> <br>
-			<a href="#"><input type="button" onclick="showhideClinic();" class="btn btn-primary btn-lg"
-				value="Add Clinics" /></a> <br> <a href="viewClinics"><input
-				type="button" class="btn btn-primary btn-lg"
-				value="View/Remove Clinics" /></a> <br> <a href="viewAdminEnquiry"><input
-				type="button" class="btn btn-primary btn-lg"
-				value="View/Reply User Enquires" /></a> <br> <a href="#"><input
-				type="button" onclick="showhideNews();"
-				class="btn btn-primary btn-lg" value="Post News" /></a>
+			<a href="#"><input type="button" onclick="showhideClinic();"
+				class="btn btn-primary btn-lg" value="Add Clinics" /></a> <br> <a
+				href="viewClinics"><input type="button"
+				class="btn btn-primary btn-lg" value="View/Remove Clinics" /></a> <br>
+			<a href="viewAdminEnquiry"><input type="button"
+				class="btn btn-primary btn-lg" value="View/Reply User Enquires" /></a>
+			<br> <a href="#"><input type="button"
+				onclick="showhideNews();" class="btn btn-primary btn-lg"
+				value="Post News" /></a>
 		</div>
 
 
@@ -111,6 +159,11 @@ a {
 			<h1 class="text align-self-center p-2">${approvedNews}</h1>
 			<h1 class="text align-self-center p-2">${approved}</h1>
 			<h1 class="text align-self-center p-2">${approvedClinic}</h1>
+
+			<div id="notification" style="display: none;">
+				${adminNotifications} <span class="dismiss"><a
+					title="dismiss this notification">x</a></span>
+			</div>
 		</div>
 
 
@@ -178,25 +231,29 @@ a {
 			<form:form action="addNewClinic" cssClass="form-horizontal"
 				method="post" modelAttribute="ClinicInfo">
 				<div class="form-group">
-					<label for="clinicName" class="col-md-3 control-label">Clinic Name</label>
+					<label for="clinicName" class="col-md-3 control-label">Clinic
+						Name</label>
 					<div class="col-md-12">
 						<form:input path="clinicName" cssClass="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="clinicAddress" class="col-md-6 control-label">Clinic Address</label>
+					<label for="clinicAddress" class="col-md-6 control-label">Clinic
+						Address</label>
 					<div class="col-md-12">
 						<form:input path="clinicAddress" cssClass="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="clinicContact" class="col-md-3 control-label">Clinic Contact</label>
+					<label for="clinicContact" class="col-md-3 control-label">Clinic
+						Contact</label>
 					<div class="col-md-12">
 						<form:input path="clinicContact" cssClass="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="clinicEmail" class="col-md-3 control-label">Clinic Email</label>
+					<label for="clinicEmail" class="col-md-3 control-label">Clinic
+						Email</label>
 					<div class="col-md-12">
 						<form:input path="clinicEmail" cssClass="form-control" />
 					</div>

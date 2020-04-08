@@ -183,8 +183,9 @@ public class AdminDaoImpl implements AdminDao {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("enquiryId", enquiryId);
 		params.put("response", response);
+		params.put("IsReplied", 1);
 
-		String sql = "UPDATE enquiry SET response=:response WHERE enquiryId=:enquiryId ";
+		String sql = "UPDATE enquiry SET response=:response, IsReplied=:IsReplied WHERE enquiryId=:enquiryId ";
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
 

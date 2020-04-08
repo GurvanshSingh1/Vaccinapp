@@ -19,6 +19,20 @@
 		$("#enquiry").hide();
 		$("#newVaccination").hide();
 		$("#clinic").hide();
+
+		$("#myimage").click(function() {
+
+			$("#result h1").hide();
+			$("#postNews").hide();
+			$("#newVaccination").hide();
+			$("#newClinic").hide();
+
+			$("#notification").fadeIn("slow");
+			$(".dismiss").click(function() {
+				$("#notification").fadeOut("slow");
+			});
+
+		});
 	}
 
 	function showhideNewVaccination() {
@@ -27,6 +41,7 @@
 		$("#enquiry").hide();
 		$("#result").hide();
 		$("#clinic").hide();
+		$("#myimage").hide();
 	}
 
 	function showhideEnquiry() {
@@ -35,6 +50,7 @@
 		$("#newVaccination").hide();
 		$("#result").hide();
 		$("#clinic").hide();
+		$("#myimage").hide();
 	}
 
 	function showhideClinic() {
@@ -43,6 +59,7 @@
 		$("#newVaccination").hide();
 		$("#result").hide();
 		$("#enquiry").hide();
+		$("#myimage").hide();
 	}
 
 	function getClinicDetail(clinicId) {
@@ -67,6 +84,32 @@ a {
 #login, #logout {
 	display: inline;
 }
+
+#notification {
+	top: 0px;
+	width: 100%;
+	z-index: 105;
+	text-align: center;
+	font-weight: normal;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	padding: 5px;
+}
+
+#notification span.dismiss {
+	border: 2px solid #FFF;
+	padding: 0 5px;
+	cursor: pointer;
+	float: right;
+	margin-right: 10px;
+}
+
+#notification a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold
+}
 </style>
 <%@ page isELIgnored="false"%>
 </head>
@@ -81,14 +124,19 @@ a {
 			</div>
 			<div class="col-md-6" style="text-align: right">
 
-				<br> <a id="login" href="login"><input type="button"
+				<br> <input type="image" id="myimage"
+					style="height: 30px; width: 30px; margin-right: 10px;"
+					src="https://img.icons8.com/nolan/64/bell.png" /> <a id="login"
+					href="login"><input type="button"
 					class="btn btn-primary btn-lg" value="Home" /></a> <a id="logout"
 					href="logout"><input type="button"
 					class="btn btn-primary btn-lg" value="Logout" /></a>
 			</div>
 		</div>
 	</div>
-					<marquee><p>${todayNews}</p></marquee>
+	<marquee>
+		<p>${todayNews}</p>
+	</marquee>
 	<br>
 
 	<div class="row">
@@ -112,6 +160,11 @@ a {
 		<div id="result" class="col-md-4">
 			<h1 class="text align-self-center p-2">${approvedEnquiry}</h1>
 			<h1 class="text align-self-center p-2">${approved}</h1>
+
+			<div id="notification" style="display: none;">
+				${userNotifications} <span class="dismiss"><a
+					title="dismiss this notification">x</a></span>
+			</div>
 		</div>
 
 		<!--  New Vaccination Section -->
@@ -140,8 +193,8 @@ a {
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="vaccinEffective" class="col-md-3 control-label">Vaccination Effective (MONTHS)
-					</label>
+					<label for="vaccinEffective" class="col-md-3 control-label">Vaccination
+						Effective (MONTHS) </label>
 					<div class="col-md-12">
 						<form:select path="vaccinEffective" cssClass="form-control">
 							<c:forEach var="adminVaccinationInfo"
