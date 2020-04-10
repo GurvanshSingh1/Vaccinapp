@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>All Vaccinations</title>
+<title>Vaccinations</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
@@ -37,7 +37,7 @@ a {
 		<div class="row">
 			<div class="col-md-6">
 				<br>
-				<h1>All Vaccinations</h1>
+				<h1>Vaccinations</h1>
 			</div>
 			<div class="col-md-6" style="text-align: right">
 
@@ -55,9 +55,9 @@ a {
 				<div class="d-flex flex-column">
 					<table class="table table-striped table-bordered">
 						<tr>
-							<th>Vaccination Type</th>
+							<th>Vaccination</th>
 							<th>Notes</th>
-							<th>Effective (Months)</th>
+							<th>Validity Period (Months)</th>
 							<th>Remove?</th>
 						</tr>
 						<c:forEach var="adminVaccinationInfo"

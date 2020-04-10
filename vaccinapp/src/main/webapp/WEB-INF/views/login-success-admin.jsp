@@ -169,7 +169,7 @@ a {
 
 		<!--  NEW Vaccination Form -->
 		<div id="newVaccination" class="col-md-4">
-			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>
+			<h1 class="text align-self-center p-2">Add New Vaccination</h1>
 			<form:form action="addNewAdminVaccination" cssClass="form-horizontal"
 				method="post" modelAttribute="AdminVaccinationInfo">
 				<div class="form-group">
@@ -185,7 +185,7 @@ a {
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="vaccinEffective" class="col-md-3 control-label">Effective
+					<label for="vaccinEffective" class="col-md-3 control-label">Validity Period
 						(Months)</label>
 					<div class="col-md-12">
 						<form:input path="vaccinEffective" cssClass="form-control" />
@@ -205,7 +205,7 @@ a {
 
 		<!--  Daily News Form -->
 		<div id="postNews" class="col-md-4">
-			<h1 class="text align-self-center p-2">Post News...</h1>
+			<h1 class="text align-self-center p-2">Post News</h1>
 			<form:form action="postNews" cssClass="form-horizontal" method="post"
 				modelAttribute="DailyNews">
 				<div class="form-group">
@@ -227,7 +227,7 @@ a {
 
 		<!--  NEW Clinic Form -->
 		<div id="newClinic" class="col-md-4">
-			<h1 class="text align-self-center p-2">Add New Clinic...</h1>
+			<h1 class="text align-self-center p-2">New Clinic Detail</h1>
 			<form:form action="addNewClinic" cssClass="form-horizontal"
 				method="post" modelAttribute="ClinicInfo">
 				<div class="form-group">

@@ -1,5 +1,7 @@
 package com.user.mareez.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,6 +51,14 @@ public class SignUpController {
 		// Implement business logic to save user details into a database
 		// .....
 
+		User check = userDao.findByEmail(user.getEmail());
+		
+		if(check != null) {
+			model.addAttribute("alreadyExist", "This email is already registered!");
+			
+			return "signup-form";
+		}
+		
 		int result = userDao.insertNewUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
 				user.getGender(), user.getDob(), user.getAddress(), user.getPostal());
 

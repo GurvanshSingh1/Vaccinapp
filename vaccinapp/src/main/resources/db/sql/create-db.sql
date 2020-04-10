@@ -32,20 +32,20 @@ CREATE TABLE userVaccination (
 CREATE TABLE adminVaccination (
   vaccinId    INTEGER identity ,
   vaccinType VARCHAR(30),
-  notes VARCHAR(100),
+  notes VARCHAR(5000),
   vaccinEffective  INTEGER
 );
 
 CREATE TABLE dailyNews (
   newsId    INTEGER identity ,
-  news VARCHAR(200),
+  news VARCHAR(500),
   postedBy VARCHAR(100),
   postDate  VARCHAR(50)
 );
 
 CREATE TABLE enquiry (
   enquiryId    INTEGER identity ,
-  enquiry VARCHAR(200),
+  enquiry VARCHAR(500),
   name VARCHAR(50),
   email  VARCHAR(50),
   response VARCHAR(200),

@@ -27,4 +27,5 @@ public interface UserDao {
 	
 	List<ClinicInfo> findClinics(int clinicId);
 
+
 }
