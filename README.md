@@ -14,3 +14,4 @@ Jasmeet-04/04/2020-Refactor Code (Remove Unwanted files)
 Jasmeet-04/04/2020-Fixed Controllers and Daos
 Gurvansh-04/05/2020-Calculated User Next Vaccination Due
 Abhisek-04/07/2020-Added Notification System
+Jasmeet-04/08/2020-UI fixing and Calculated Recommended Date 
