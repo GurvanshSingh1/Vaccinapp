@@ -145,11 +145,11 @@ a {
 				onclick="showhideNewVaccination();" class="btn btn-primary btn-lg"
 				value="Add New Vaccination" /></a><br> <a href="viewAllRecords"><input
 				type="button" class="btn btn-primary btn-lg"
-				value="View/Remove Vaccinations" /></a> <br> <a
+				value="My Records" /></a> <br> <a
 				href="viewDailyNews"><input type="button"
-				class="btn btn-primary btn-lg" value="View Daily News" /></a> <br>
+				class="btn btn-primary btn-lg" value="News" /></a> <br>
 			<a href="#"><input type="button" onclick="showhideClinic();"
-				class="btn btn-primary btn-lg" value="View Clinics" /></a> <br> <a
+				class="btn btn-primary btn-lg" value="Vaccination Clinics" /></a> <br> <a
 				href="#"><input type="button" onclick="showhideEnquiry();"
 				class="btn btn-primary btn-lg" value="Enquire Us" /></a> <br> <a
 				href="viewEnquiry"><input type="button"
@@ -169,7 +169,7 @@ a {
 
 		<!--  New Vaccination Section -->
 		<div id="newVaccination" class="col-md-4">
-			<h1 class="text align-self-center p-2">Add New Vaccination...</h1>
+			<h1 class="text align-self-center p-2">Add New Vaccination</h1>
 			<form:form action="addNewUserVaccination" cssClass="form-horizontal"
 				method="post" modelAttribute="UserVaccinationInfo">
 
@@ -193,8 +193,7 @@ a {
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="vaccinEffective" class="col-md-3 control-label">Vaccination
-						Effective (MONTHS) </label>
+					<label for="vaccinEffective" class="col-md-3 control-label">Validity Period (MONTHS) </label>
 					<div class="col-md-12">
 						<form:select path="vaccinEffective" cssClass="form-control">
 							<c:forEach var="adminVaccinationInfo"
@@ -205,7 +204,7 @@ a {
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="vaccinDate" class="col-md-6 control-label">Date
+					<label for="vaccinDate" class="col-md-6 control-label">Received Date
 						(MM/DD/YYYY)</label>
 					<div class="col-md-12">
 						<form:input path="vaccinDate" cssClass="form-control" />
@@ -236,11 +235,11 @@ a {
 
 		<!--  Enquiry Form -->
 		<div id="enquiry" class="col-md-4">
-			<h1 class="text align-self-center p-2">Enquire Us..</h1>
+			<h1 class="text align-self-center p-2">Enquire Us</h1>
 			<form:form action="addEnquiry" cssClass="form-horizontal"
 				method="post" modelAttribute="Enquiry">
 				<div class="form-group">
-					<label for="news" class="col-md-3 control-label">Enquiry</label>
+					<label for="news" class="col-md-3 control-label">Inquiry</label>
 					<div class="col-md-12">
 						<form:textarea style="height:150px" path="enquiry"
 							cssClass="form-control" />
@@ -259,7 +258,7 @@ a {
 
 		<!--  Clinic Form -->
 		<div id="clinic" class="col-md-4">
-			<h1 class="text align-self-center p-2">Clinic Details..</h1>
+			<h1 class="text align-self-center p-2">Clinic Details</h1>
 			<form:form modelAttribute="ClinicInfo">
 				<div class="form-group">
 					<label for="vaccinType" class="col-md-4 control-label">Select

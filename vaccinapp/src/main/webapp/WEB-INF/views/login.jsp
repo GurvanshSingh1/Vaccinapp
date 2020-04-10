@@ -49,9 +49,9 @@ label, h1, p {
 						<div class="form-group">
 							<!-- Button -->
 							<div class="col-md-offset-3 col-md-9">
-								<form:button cssClass="btn btn-primary">Submit</form:button>
+								<form:button cssClass="btn btn-primary">Login</form:button>
 								<a href="showSignUpForm"><input type="button"
-									value="New User?" /></a><br>
+									value="Sign Up" /></a><br>
 
 							</div>
 						</div>

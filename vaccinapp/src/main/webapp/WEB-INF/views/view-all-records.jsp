@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>All Vaccinations</title>
+<title>Vaccination Record</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
@@ -39,7 +39,7 @@ a {
 		<div class="row">
 			<div class="col-md-6">
 				<br>
-				<h1>All Vaccinations</h1>
+				<h1>My Vaccination Record</h1>
 			</div>
 			<div class="col-md-6" style="text-align: right">
 
@@ -58,10 +58,10 @@ a {
 			<div class="d-flex align-items-center justify-content-center h-100">
 				<div class="d-flex flex-column">
 					<table class="table table-striped table-bordered">
-						<tr><th>Vaccination Type</th>
-						<th>Vaccination Date</th>
-						<th>Best Before</th>
-						<th>Due In</th>
+						<tr><th>Vaccination</th>
+						<th>Received</th>
+						<th>Validation Period</th>
+						<th>Date Recommended</th>
 						<th>Remarks</th>
 						<th>Remove?</th></tr>
 						<c:forEach var="userVaccinationInfo"
@@ -70,7 +70,7 @@ a {
 								<td>${userVaccinationInfo.vaccinType}</td>
 								<td>${userVaccinationInfo.vaccinDate}</td>
 								<td>${userVaccinationInfo.vaccinEffective} (Months)</td>
-								<td>${userVaccinationInfo.vaccinDue} (Days)</td>
+								<td>${userVaccinationInfo.vaccinDue}</td>
 								<td>${userVaccinationInfo.notes}</td>
 								<td><a href="deleteUserVaccination?vaccinId=${userVaccinationInfo.vaccinId}"><input type="button" value="Delete"/> </a>
 							</tr>

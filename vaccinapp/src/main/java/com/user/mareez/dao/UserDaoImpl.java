@@ -95,7 +95,7 @@ public class UserDaoImpl implements UserDao {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("fName", fName);
 
-		String sql = "SELECT *, DATEDIFF(DAY, CURDATE(), DATEADD(MONTH, vaccinEffective, CURDATE())) as vaccinDue  FROM userVaccination WHERE fname=:fName";
+		String sql = "SELECT *, FORMATDATETIME(DATEADD(MONTH, vaccinEffective, PARSEDATETIME(vaccinDate, 'MM/dd/yyyy')), 'MM/dd/yyyy') as vaccinDue FROM userVaccination WHERE fname=:fName";
 
 		List<UserVaccinationInfo> result = namedParameterJdbcTemplate.query(sql, params, new VaccinationMapper());
 
@@ -238,7 +238,8 @@ public class UserDaoImpl implements UserDao {
 
 		return result;
 	}
-	
+
+
 	
 
 }
