@@ -78,9 +78,15 @@ public class AdminNewsController {
 				count++;
 			}
 		}
-		if(count > 0) {
+		if((count > 0) && !(userInfo.size() > 0))  {
 			adminNotifications = "\nYou have "+count+ " pending enquiry(s)";
 		}
+		
+		if((count > 0) && (userInfo.size() >0))  {
+			adminNotifications += "<br>You have "+count+ " pending enquiry(s)";
+		}
+		
+		
 		model.addAttribute("adminNotifications", adminNotifications);
 		return "login-success-admin";
 	}
